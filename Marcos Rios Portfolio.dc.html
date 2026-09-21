@@ -29,8 +29,8 @@
   [data-rule].mr-in::before { transform: scaleX(1); }
   [data-page] { animation: mr-rise .5s cubic-bezier(.2,.7,.2,1) both; }
   [data-sway] { animation: mr-sway 7s ease-in-out infinite; will-change: transform; }
-  [data-zoom] > * { display: block; width: 100%; height: 100%; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
-  #work article:hover [data-zoom] > * { transform: scale(1.05); }
+  [data-zoom] > * { display: block; width: 100%; height: 100%; filter: grayscale(1) contrast(1.05); transition: transform .6s cubic-bezier(.2,.7,.2,1), filter .6s ease; }
+  #work article:hover [data-zoom] > * { transform: scale(1.05); filter: grayscale(0) contrast(1); }
   #work article h3 { transition: transform .35s cubic-bezier(.2,.7,.2,1); }
   #work article:hover h3 { transform: translateX(6px); }
   @media (prefers-reduced-motion: reduce) {
@@ -39,13 +39,21 @@
     [data-sway] { animation: none; }
     [data-zoom] > *, #work article h3 { transition: none; }
   }
+  .profile-badge-wrap { position:absolute; right:clamp(16px,4vw,48px); bottom:clamp(16px,3vw,36px); z-index:2; width:clamp(96px,12vw,148px); aspect-ratio:1; overflow:hidden; border-radius:50%; }
+  .profile-badge-wrap .profile-badge { display:block; width:100%; height:100%; object-fit:contain; opacity:1; transition:opacity .22s ease, transform .28s cubic-bezier(.2,.7,.2,1); }
+  .profile-badge-wrap .profile-heart { position:absolute; top:50%; left:50%; width:100%; height:100%; object-fit:contain; opacity:0; transform:translate(-50%,-50%) scale(.45); transition:opacity .22s ease, transform .28s cubic-bezier(.2,.7,.2,1); pointer-events:none; z-index:3; }
+  .profile-badge-wrap:hover .profile-badge { opacity:0; transform:scale(1.02); }
+  .profile-badge-wrap:hover .profile-heart { opacity:1; transform:translate(-50%,-50%) scale(1); }
+  @media (prefers-reduced-motion: reduce) {
+    .profile-badge-wrap .profile-badge, .profile-badge-wrap .profile-heart { transition:none; }
+  }
 </style>
 </helmet>
 
 <div style="width:100%;min-height:100vh;background:var(--color-bg)">
 
   <header style="display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;justify-content:space-between;padding:26px clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
-    <a href="#top" onClick="{{ goHome }}" style="font-weight:900;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-text)">Marcos Rios</a>
+    <a href="#top" onClick="{{ goHome }}" style="font-weight:900;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-text)">Marcos Uriel</a>
     <nav style="display:flex;flex-wrap:wrap;gap:clamp(12px,2vw,28px);align-items:baseline">
       <a href="#work" style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text)">Work</a>
       <a href="#about" style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text)">About</a>
@@ -62,22 +70,19 @@
     <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));border-bottom:2px solid var(--color-text)">
       <div style="padding:clamp(40px,5vw,88px);display:flex;flex-direction:column;gap:clamp(30px,3.2vw,48px);border-right:2px solid var(--color-text)">
         <div data-reveal style="animation-delay:.05s">
-          <p style="margin:0 0 20px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-700)">UX/UI Designer &middot; Roma, Texas</p>
-          <h1 style="margin:0;font-size:clamp(52px,9vw,124px);line-height:.86;font-weight:900;letter-spacing:-.03em;text-transform:uppercase">Marcos<br />Rios</h1>
+          <p style="margin:0 0 20px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-700)">UX/UI Designer &middot; Product Designer</p>
+          <h1 style="margin:0;font-size:clamp(52px,9vw,124px);line-height:.86;font-weight:900;letter-spacing:-.03em;text-transform:uppercase">Marcos<br />Uriel</h1>
         </div>
         <p data-reveal style="animation-delay:.18s;margin:0;max-width:34ch;font-size:clamp(17px,1.5vw,21px);line-height:1.45;text-wrap:pretty">I design software for people who live between two languages. Research, interface, and the small details that decide whether someone finishes the task or gives up.</p>
-        <div data-reveal style="animation-delay:.3s;display:grid;grid-template-columns:1fr auto;gap:0;border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
-          <p style="margin:0;padding:12px 0;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">Open to full-time &amp; contract</p>
-          <p style="margin:0;padding:12px 0 12px 16px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-700)">Sep 2026</p>
-        </div>
         <div data-reveal style="animation-delay:.42s;display:flex;flex-wrap:wrap;gap:12px">
           <a href="#work" style="background:var(--color-accent);color:var(--color-bg);padding:14px 20px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase" style-hover="background:var(--color-accent-600)">See the work</a>
           <a href="#contact" style="border:2px solid var(--color-text);color:var(--color-text);padding:12px 20px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase" style-hover="background:var(--color-accent-200)">R&eacute;sum&eacute;</a>
         </div>
       </div>
       <div style="display:flex;flex-direction:column">
-        <div data-reveal style="animation-delay:.12s;flex:1;min-height:420px;border-bottom:2px solid var(--color-text);overflow:hidden;background:var(--color-surface)">
-          <img src="uploads/Marcos Rios.jpg" alt="Marcos Rios" style="display:block;width:100%;height:100%;min-height:420px;object-fit:cover;object-position:50% 22%;filter:grayscale(1) contrast(1.05)" />
+        <div data-reveal style="animation-delay:.12s;position:relative;flex:1;min-height:420px;border-bottom:2px solid var(--color-text);overflow:hidden;background:var(--color-surface)">
+          <img src="uploads/marcos-uriel-main.png" alt="Marcos Uriel" style="display:block;width:100%;height:100%;min-height:420px;object-fit:cover;object-position:50% 22%;filter:grayscale(1) contrast(1.05)" />
+          <div class="profile-badge-wrap"><img class="profile-badge" src="uploads/profile-badge.png" alt="Diseño con corazón" /><img class="profile-heart" src="uploads/heart-hover.png" alt="" /></div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr">
           <div style="padding:28px;border-right:2px solid var(--color-text)">
@@ -92,12 +97,8 @@
       </div>
     </section>
 
-    <sc-if value="{{ papel }}" hint-placeholder-val="{{ true }}">
-      <div data-sway style="height:28px;background:var(--color-accent);maskImage:radial-gradient(circle at 14px 28px, transparent 11px, #000 11.5px);WebkitMaskImage:radial-gradient(circle at 14px 28px, transparent 11px, #000 11.5px);maskSize:28px 28px;WebkitMaskSize:28px 28px;maskRepeat:repeat-x;WebkitMaskRepeat:repeat-x"></div>
-    </sc-if>
-
     <section id="frontera" data-reveal style="background:var(--color-accent);color:var(--color-bg);padding:clamp(56px,8vw,128px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
-      <p style="margin:0 0 24px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-200)">Dise&ntilde;ar en la frontera / Designing on the border</p>
+      <p style="margin:0 0 24px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-200)">Dise&ntilde;ando en la frontera / Designing on the border</p>
       <h2 style="margin:0;max-width:26ch;font-size:clamp(32px,5.5vw,72px);line-height:1;font-weight:900;letter-spacing:-.02em;text-transform:uppercase">Most software assumes one language, one device, one kind of user.</h2>
       <p style="margin:28px 0 0;max-width:62ch;font-size:clamp(16px,1.5vw,19px);line-height:1.5;color:var(--color-accent-100);text-wrap:pretty">I grew up in Roma, Texas, where a conversation starts in Spanish and finishes in English, where a phone is the only computer in the house, and where the nearest clinic or bank branch might be forty minutes away. That is the baseline I design against: low bandwidth, shared devices, code-switching, and people who will not tell you the form confused them &mdash; they will just leave. Designing for the border is not a niche. It is a stress test.</p>
     </section>
@@ -110,8 +111,8 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));borderTop:2px solid var(--color-text)">
 
         <article style="border-right:2px solid var(--color-text);display:flex;flex-direction:column">
-          <div data-zoom style="aspect-ratio:4/3;position:relative;overflow:hidden;border-bottom:2px solid var(--color-text);background:var(--color-surface);filter:grayscale(1) contrast(1.05)">
-            <image-slot id="work-noah" shape="rect" fit="cover" placeholder="Drop a Noah's Ark screen or shelter photo"></image-slot>
+          <div data-zoom style="aspect-ratio:4/3;position:relative;overflow:hidden;border-bottom:2px solid var(--color-text);background:var(--color-surface)">
+            <img src="uploads/noahs-ark-thumbnail.webp" alt="Noah's Ark mobile screens" style="object-fit:cover;object-position:center" />
           </div>
           <div style="padding:32px;display:flex;flex-direction:column;gap:18px;flex:1">
             <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-accent-700)">01 &middot; Animal rescue</p>
@@ -122,8 +123,8 @@
         </article>
 
         <article style="border-right:2px solid var(--color-text);display:flex;flex-direction:column">
-          <div data-zoom style="aspect-ratio:4/3;position:relative;overflow:hidden;border-bottom:2px solid var(--color-text);background:var(--color-surface);filter:grayscale(1) contrast(1.05)">
-            <image-slot id="work-lino" shape="rect" fit="cover" placeholder="Drop a Lino's chatbot screen"></image-slot>
+          <div data-zoom style="aspect-ratio:4/3;position:relative;overflow:hidden;border-bottom:2px solid var(--color-text);background:var(--color-surface)">
+            <img src="uploads/linos-laptop-thumbnail.webp" alt="Lino's Pharmacy laptop interface" style="object-fit:cover;object-position:center" />
           </div>
           <div style="padding:32px;display:flex;flex-direction:column;gap:18px;flex:1">
             <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-accent-700)">02 &middot; Healthcare AI</p>
@@ -134,8 +135,8 @@
         </article>
 
         <article style="display:flex;flex-direction:column">
-          <div data-zoom style="aspect-ratio:4/3;position:relative;overflow:hidden;border-bottom:2px solid var(--color-text);background:var(--color-surface);filter:grayscale(1) contrast(1.05)">
-            <image-slot id="work-crm" shape="rect" fit="cover" placeholder="Drop a CRM AI dashboard screen"></image-slot>
+          <div data-zoom style="aspect-ratio:4/3;position:relative;overflow:hidden;border-bottom:2px solid var(--color-text);background:var(--color-surface)">
+            <img src="uploads/crm-gray-thumbnail.webp" alt="CRM AI dashboard" style="object-fit:cover;object-position:center" />
           </div>
           <div style="padding:32px;display:flex;flex-direction:column;gap:18px;flex:1">
             <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-accent-700)">03 &middot; B2B tooling</p>
@@ -149,8 +150,8 @@
     </section>
 
     <section id="about" data-reveal data-rule style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-bottom:2px solid var(--color-text)">
-      <div style="border-right:2px solid var(--color-text);min-height:460px;position:relative;background:var(--color-surface);filter:grayscale(1) contrast(1.05)">
-        <image-slot id="about-roma" shape="rect" fit="cover" placeholder="Drop a photo of Roma — the plaza, the bluff, the brick"></image-slot>
+      <div style="border-right:2px solid var(--color-text);min-height:460px;position:relative;overflow:hidden;background:var(--color-surface)">
+        <img src="uploads/roma-map.jpeg" alt="Illustrated map of Roma, Texas and Ciudad Miguel Alemán" style="display:block;width:100%;height:100%;min-height:460px;object-fit:cover;object-position:center;filter:grayscale(1) contrast(1.05);transform:scale(1.08)" />
       </div>
       <div style="padding:clamp(40px,5vw,88px);display:flex;flex-direction:column;gap:28px">
         <p style="margin:0;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-700)">About</p>
@@ -165,10 +166,6 @@
           <div style="padding:24px;border-right:2px solid var(--color-text)">
             <p style="margin:0;font-size:28px;font-weight:900">ES / EN</p>
             <p style="margin:4px 0 0;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-neutral-600)">Research in both</p>
-          </div>
-          <div style="padding:24px">
-            <p data-count style="margin:0;font-size:28px;font-weight:900">60+</p>
-            <p style="margin:4px 0 0;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-neutral-600)">Usability sessions</p>
           </div>
         </div>
       </div>
@@ -218,11 +215,11 @@
       </div>
       <div style="padding:clamp(40px,5vw,80px);display:flex;flex-direction:column;gap:16px">
         <p style="margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Tools</p>
-        <p style="margin:0;font-size:16px;font-weight:600;border-bottom:2px solid var(--color-neutral-300);padding-bottom:12px">Figma &amp; FigJam</p>
-        <p style="margin:0;font-size:16px;font-weight:600;border-bottom:2px solid var(--color-neutral-300);padding-bottom:12px">Maze / Dovetail</p>
-        <p style="margin:0;font-size:16px;font-weight:600;border-bottom:2px solid var(--color-neutral-300);padding-bottom:12px">HTML, CSS, light JS</p>
-        <p style="margin:0;font-size:16px;font-weight:600;border-bottom:2px solid var(--color-neutral-300);padding-bottom:12px">Webflow &amp; Framer</p>
-        <p style="margin:0;font-size:16px;font-weight:600">Notion, Jira, Linear</p>
+        <p style="margin:0;font-size:16px;font-weight:600;border-bottom:2px solid var(--color-neutral-300);padding-bottom:12px">Figma</p>
+        <p style="margin:0;font-size:16px;font-weight:600;border-bottom:2px solid var(--color-neutral-300);padding-bottom:12px">AI tools</p>
+        <p style="margin:0;font-size:16px;font-weight:600;border-bottom:2px solid var(--color-neutral-300);padding-bottom:12px">Sketch</p>
+        <p style="margin:0;font-size:16px;font-weight:600;border-bottom:2px solid var(--color-neutral-300);padding-bottom:12px">Notion, Jira, Linear</p>
+        <p style="margin:0;font-size:16px;font-weight:600">Adobe Creative Cloud</p>
       </div>
     </section>
 
@@ -233,23 +230,19 @@
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));borderTop:2px solid var(--color-text)">
         <div style="aspect-ratio:1/1;border-right:2px solid var(--color-text);background:var(--color-surface);position:relative;filter:grayscale(1) contrast(1.05)">
-          <image-slot id="photo-plaza" shape="rect" fit="cover" placeholder="Drop: the plaza"></image-slot>
+          <img src="uploads/side-project-4.jpg" alt="Portrait of a creative professional seated in a director's chair" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center" />
         </div>
         <div style="aspect-ratio:1/1;border-right:2px solid var(--color-text);background:var(--color-surface);position:relative;filter:grayscale(1) contrast(1.05)">
-          <image-slot id="photo-rio" shape="rect" fit="cover" placeholder="Drop: the río grande"></image-slot>
+          <img src="uploads/side-project-6.jpg" alt="Black-and-white family portrait" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center" />
         </div>
         <div style="aspect-ratio:1/1;border-right:2px solid var(--color-text);background:var(--color-surface);position:relative;filter:grayscale(1) contrast(1.05)">
-          <image-slot id="photo-customs" shape="rect" fit="cover" placeholder="Drop: the customs house"></image-slot>
+          <img src="uploads/side-project-11111.jpg" alt="Seated fashion portrait with reflection" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center" />
         </div>
         <div style="aspect-ratio:1/1;background:var(--color-surface);position:relative;filter:grayscale(1) contrast(1.05)">
-          <image-slot id="photo-type" shape="rect" fit="cover" placeholder="Drop: a type study"></image-slot>
+          <img src="uploads/side-project-45.jpg" alt="Maternity portrait in a black gown" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center" />
         </div>
       </div>
     </section>
-
-    <sc-if value="{{ papel }}" hint-placeholder-val="{{ true }}">
-      <div data-sway style="height:28px;background:var(--color-accent);maskImage:radial-gradient(circle at 14px 0, transparent 11px, #000 11.5px);WebkitMaskImage:radial-gradient(circle at 14px 0, transparent 11px, #000 11.5px);maskSize:28px 28px;WebkitMaskSize:28px 28px;maskRepeat:repeat-x;WebkitMaskRepeat:repeat-x"></div>
-    </sc-if>
 
     <section id="contact" data-reveal style="background:var(--color-text);color:var(--color-bg);padding:clamp(56px,8vw,128px) clamp(20px,5vw,80px)">
       <p style="margin:0 0 20px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-400)">Contact</p>
@@ -257,7 +250,7 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;marginTop:40px;border:2px solid var(--color-neutral-600)">
         <div style="padding:30px;border-right:2px solid var(--color-neutral-600)">
           <p style="margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-400)">Email</p>
-          <a href="mailto:hola@marcosrios.design" style="font-size:18px;font-weight:800;color:var(--color-bg)" style-hover="color:var(--color-accent-400)">hola@marcosrios.design</a>
+          <a href="mailto:hola@marcosrios.com" style="font-size:18px;font-weight:800;color:var(--color-bg)" style-hover="color:var(--color-accent-400)">hola@marcosrios.com</a>
         </div>
         <div style="padding:30px;border-right:2px solid var(--color-neutral-600)">
           <p style="margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-400)">Elsewhere</p>
@@ -267,7 +260,7 @@
           <a href="#" style="background:var(--color-accent);color:var(--color-bg);padding:14px 20px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase" style-hover="background:var(--color-accent-500)">Download r&eacute;sum&eacute; (PDF)</a>
         </div>
       </div>
-      <p style="margin:32px 0 0;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-500)">Marcos Rios &middot; Roma, Texas &middot; Available for full-time &amp; contract</p>
+      <p style="margin:32px 0 0;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-500)">Marcos Uriel &middot; Roma, Texas &middot; Available for full-time &amp; contract</p>
     </section>
 
   </div>
@@ -279,59 +272,175 @@
       <button type="button" onClick="{{ goHome }}" style="background:none;border:none;padding:0;font-family:Archivo,system-ui,sans-serif;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-700);cursor:pointer" style-hover="color:var(--color-text)">&larr; All work</button>
     </div>
     <header style="padding:clamp(40px,5vw,88px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
-      <p style="margin:0 0 16px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-700)">01 &middot; Animal rescue platform</p>
+      <p style="margin:0 0 16px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-700)">01 &middot; Mobile app redesign</p>
       <h1 style="margin:0;font-size:clamp(40px,7vw,96px);line-height:.92;font-weight:900;letter-spacing:-.03em;text-transform:uppercase">Noah's Ark</h1>
-      <p style="margin:24px 0 0;max-width:56ch;font-size:clamp(17px,1.6vw,21px);line-height:1.45;text-wrap:pretty">A volunteer-run shelter was logging intakes on paper and losing animals in the handoff to fosters. I redesigned intake and adoption around one constraint: a phone, outdoors, one hand free.</p>
+      <p style="margin:24px 0 0;max-width:56ch;font-size:clamp(17px,1.6vw,21px);line-height:1.45;text-wrap:pretty">Redesigning a lost-pet recovery app for urgency, clarity, and emotional support.</p>
+      <p style="margin:18px 0 0;max-width:62ch;font-size:16px;line-height:1.55;text-wrap:pretty">Noah&rsquo;s Ark helps pet owners take action when a pet goes missing. As reporting tools, pet profiles, community features, and donations accumulated, the most urgent flows became harder to find. I redesigned the experience around what people need in a stressful moment: reassurance, a clear next step, and less friction.</p>
     </header>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border-bottom:2px solid var(--color-text)">
-      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Role</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Lead UX/UI</p></div>
-      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Timeline</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">10 weeks</p></div>
-      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Team</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">2 devs, 1 PM, me</p></div>
-      <div style="padding:28px"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Tools</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Figma, Maze</p></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));border-bottom:2px solid var(--color-text)">
+      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Role</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Freelance Product Designer</p></div>
+      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Timeline</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">6 weeks</p></div>
+      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Scope</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">UX audit, research, interaction design, wireframes, prototype, testing</p></div>
+      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Team</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Founder, developers, copy designer</p></div>
+      <div style="padding:28px"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Platform</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Mobile app</p></div>
     </div>
     <div style="min-height:340px;background:var(--color-text);color:var(--color-bg);display:flex;align-items:flex-end;padding:clamp(32px,5vw,72px);border-bottom:2px solid var(--color-text)">
-      <p style="margin:0;max-width:22ch;font-size:clamp(34px,6vw,86px);font-weight:900;line-height:.94;text-transform:uppercase;letter-spacing:-.03em">Photo first.<br />Details after.</p>
+      <p style="margin:0;max-width:22ch;font-size:clamp(34px,6vw,86px);font-weight:900;line-height:.94;text-transform:uppercase;letter-spacing:-.03em">Make the next step feel possible.</p>
     </div>
+    <figure style="margin:0;padding:clamp(20px,4vw,56px);background:var(--color-neutral-100);border-bottom:2px solid var(--color-text)">
+      <img src="uploads/noah-01-overview.webp" alt="Noah's Ark mobile app overview" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" />
+      <figcaption style="margin:12px 0 0;font-size:12px;line-height:1.4;color:var(--color-neutral-600)">The redesign brings reporting, recovery, and support into one clearer mobile experience.</figcaption>
+    </figure>
+    <section style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
+      <p style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Outcome at a glance</p>
+      <h2 style="margin:0;max-width:20ch;font-size:clamp(28px,4vw,54px);font-weight:900;line-height:.98;text-transform:uppercase;letter-spacing:-.02em">A calmer, clearer path to help bring pets home.</h2>
+      <p style="margin:22px 0 0;max-width:62ch;font-size:17px;line-height:1.55">The redesign made urgent actions easier to find, simplified reporting, and created a more supportive tone. Moderated prototype testing with five participants showed measurable gains across completion, speed, and confidence.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));marginTop:36px;border:2px solid var(--color-text)">
+        <div style="padding:26px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:clamp(32px,4vw,56px);font-weight:900;line-height:1">60% <span style="color:var(--color-accent-700)">&rarr; 100%</span></p><p style="margin:10px 0 0;font-size:14px;line-height:1.4">Task completion</p></div>
+        <div style="padding:26px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:clamp(32px,4vw,56px);font-weight:900;line-height:1">4:20 <span style="color:var(--color-accent-700)">&rarr; 2:30</span></p><p style="margin:10px 0 0;font-size:14px;line-height:1.4">Average completion time</p></div>
+        <div style="padding:26px"><p style="margin:0;font-size:clamp(32px,4vw,56px);font-weight:900;line-height:1">4.1 <span style="color:var(--color-accent-700)">&rarr; 6.3</span></p><p style="margin:10px 0 0;font-size:14px;line-height:1.4">Confidence on a 7-point scale</p></div>
+      </div>
+    </section>
+    <figure style="margin:0;padding:clamp(20px,4vw,56px);background:var(--color-neutral-100);border-bottom:2px solid var(--color-text)">
+      <img src="uploads/noah-02-outcome.webp" alt="Noah's Ark outcome and redesigned mobile screens" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" />
+      <figcaption style="margin:12px 0 0;font-size:12px;line-height:1.4;color:var(--color-neutral-600)">Outcome at a glance: a more focused recovery experience with clearer action and support.</figcaption>
+    </figure>
     <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-bottom:2px solid var(--color-text)">
       <div style="padding:clamp(40px,5vw,80px);border-right:2px solid var(--color-text)">
         <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">The problem</h2>
-        <p style="margin:0 0 14px;font-size:16px;line-height:1.55;text-wrap:pretty">Intake happened wherever an animal was found. Volunteers filled a paper sheet, photographed it later, and typed it into a spreadsheet at night &mdash; if they remembered. Fosters got a text with no history. Adopters emailed about animals already placed.</p>
-        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">I shadowed six volunteers over two weekends and counted eleven places the same animal's information was re-entered.</p>
+        <p style="margin:0 0 14px;font-size:16px;line-height:1.55;text-wrap:pretty">When someone loses a pet, they do not need every feature the app offers. They need clarity, urgency, and a clear next step.</p>
+        <p style="margin:0 0 14px;font-size:16px;line-height:1.55;text-wrap:pretty">Reporting a lost or found pet was buried among donation buttons, store content, and community features. The product had good intentions, but its priorities did not match the user&rsquo;s mindset in a crisis.</p>
+        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">This was not just a visual problem. It was a product-priority problem.</p>
       </div>
       <div style="padding:clamp(40px,5vw,80px)">
-        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">What I did</h2>
-        <p style="margin:0 0 14px;font-size:16px;line-height:1.55;text-wrap:pretty">Rebuilt intake as a four-step form that saves on every field and works offline, with photo-first entry &mdash; the picture is the record, the details fill in after.</p>
-        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">Gave fosters a single animal page with medical history, and made the public adoption list read from the same record so nothing stale ever shows.</p>
+        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">My role</h2>
+        <p style="margin:0 0 14px;font-size:16px;line-height:1.55;text-wrap:pretty">I led the UX process from audit through validation: reviewing the current experience, identifying friction in the highest-priority flows, conducting interviews with pet owners, turning research into principles, and creating sketches, wireframes, prototypes, and usability tests.</p>
+        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">I collaborated with the copy designer, founder, and developers to refine the tone and keep the redesign grounded in both user needs and product realities.</p>
       </div>
     </section>
     <section style="border-bottom:2px solid var(--color-text)">
       <div style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px) 32px">
-        <h2 style="margin:0;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">Process</h2>
+        <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Audit</p>
+        <h2 style="margin:0;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">Understanding the current experience</h2>
+        <p style="margin:18px 0 0;max-width:64ch;font-size:16px;line-height:1.55">I started with a walkthrough of the app&rsquo;s most important flows: report a missing pet, report a found pet, and create or manage a pet profile. I also looked at how social feed, donations, monetization, memorial features, and gamification shaped the reporting experience.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));borderTop:2px solid var(--color-text)">
+        <div style="padding:30px;border-right:2px solid var(--color-text)"><p style="margin:0 0 10px;font-size:12px;font-weight:800;color:var(--color-accent-700)">01</p><h3 style="margin:0 0 10px;font-size:19px;font-weight:900;text-transform:uppercase">Critical actions competed with secondary features</h3><p style="margin:0;font-size:15px;line-height:1.5">Urgent actions competed visually and structurally with donations, store content, and community features, creating hesitation and stress.</p></div>
+        <div style="padding:30px;border-right:2px solid var(--color-text)"><p style="margin:0 0 10px;font-size:12px;font-weight:800;color:var(--color-accent-700)">02</p><h3 style="margin:0 0 10px;font-size:19px;font-weight:900;text-transform:uppercase">The structure did not match the user&rsquo;s mindset</h3><p style="margin:0;font-size:15px;line-height:1.5">The product behaved like a platform with many features, while users in crisis needed reassurance, clarity, and a quick path to action.</p></div>
+        <div style="padding:30px;border-right:2px solid var(--color-text)"><p style="margin:0 0 10px;font-size:12px;font-weight:800;color:var(--color-accent-700)">03</p><h3 style="margin:0 0 10px;font-size:19px;font-weight:900;text-transform:uppercase">The tone felt too harsh in key moments</h3><p style="margin:0;font-size:15px;line-height:1.5">Cold language appeared where people needed calm, reassurance, and a stronger sense of support.</p></div>
+        <div style="padding:30px"><p style="margin:0 0 10px;font-size:12px;font-weight:800;color:var(--color-accent-700)">04</p><h3 style="margin:0 0 10px;font-size:19px;font-weight:900;text-transform:uppercase">Reporting felt too burdensome</h3><p style="margin:0;font-size:15px;line-height:1.5">The flow felt longer, heavier, and more repetitive than it needed to be during an already stressful experience.</p></div>
+      </div>
+    </section>
+    <section style="border-bottom:2px solid var(--color-text)">
+      <div style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px) 32px">
+        <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">The audit in screens</p>
+        <h2 style="margin:0;max-width:22ch;font-size:clamp(26px,4vw,54px);font-weight:900;line-height:.98;text-transform:uppercase;letter-spacing:-.02em">Where urgency was getting lost.</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));border-top:2px solid var(--color-text)">
+        <figure style="margin:0;padding:20px;border-right:2px solid var(--color-text)"><img src="uploads/noah-03-home-audit.webp" alt="Audit of the Noah's Ark home screen" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">The landing feed encouraged browsing instead of immediate action.</figcaption></figure>
+        <figure style="margin:0;padding:20px;border-right:2px solid var(--color-text)"><img src="uploads/noah-04-profile-audit.webp" alt="Audit of the Noah's Ark pet profile" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">Profile management, memorial features, and crisis tools were mixed together.</figcaption></figure>
+        <figure style="margin:0;padding:20px"><img src="uploads/noah-05-report-audit.webp" alt="Audit of the Noah's Ark lost pet report" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">A monetization interruption pulled attention away from completing a report.</figcaption></figure>
+      </div>
+    </section>
+    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-bottom:2px solid var(--color-text)">
+      <div style="padding:clamp(40px,5vw,80px);border-right:2px solid var(--color-text)">
+        <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Research</p>
+        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">Stress changes how people move through a product</h2>
+        <p style="margin:0 0 14px;font-size:16px;line-height:1.55">I spoke with five participants recruited from Facebook pet communities: two had lost a pet in the past, one currently had a missing pet, one had an unresolved loss, and one was a general pet owner.</p>
+        <p style="margin:0;font-size:16px;line-height:1.55">I also reviewed real lost-pet posts to understand how people naturally communicate when they are trying to bring a beloved pet home.</p>
+      </div>
+      <div style="padding:clamp(40px,5vw,80px)">
+        <div style="border-left:8px solid var(--color-accent);padding-left:24px;margin:0 0 34px"><p style="margin:0;font-size:clamp(24px,3vw,38px);font-weight:900;line-height:1.05">&ldquo;It feels like an interrogation.&rdquo;</p><p style="margin:10px 0 0;font-size:14px;color:var(--color-neutral-600)">Participant feedback on long, repetitive forms</p></div>
+        <div style="border-left:8px solid var(--color-accent);padding-left:24px"><p style="margin:0;font-size:clamp(24px,3vw,38px);font-weight:900;line-height:1.05">&ldquo;Did it actually submit?&rdquo;</p><p style="margin:10px 0 0;font-size:14px;color:var(--color-neutral-600)">Participant feedback on unclear confirmation</p></div>
+        <p style="margin:34px 0 0;font-size:16px;line-height:1.55">The clearest tension was between crisis language like &ldquo;Lost Pet Mode&rdquo; and social cues like &ldquo;Followers&rdquo; and &ldquo;Following.&rdquo; That contrast created cognitive dissonance and made the product feel less aligned with the moment.</p>
+      </div>
+    </section>
+    <figure style="margin:0;padding:clamp(20px,4vw,56px);background:var(--color-neutral-100);border-bottom:2px solid var(--color-text)">
+      <img src="uploads/noah-06-research.webp" alt="Noah's Ark research synthesis" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" />
+      <figcaption style="margin:12px 0 0;font-size:12px;line-height:1.4;color:var(--color-neutral-600)">Research synthesis: real recovery behavior is speedy, functional, and community-first.</figcaption>
+    </figure>
+    <section style="border-bottom:2px solid var(--color-text)">
+      <div style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px) 32px">
+        <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Direction</p>
+        <h2 style="margin:0;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">Three principles for a more supportive product</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));borderTop:2px solid var(--color-text)">
+        <div style="padding:32px;border-right:2px solid var(--color-text)"><p style="margin:0 0 12px;font-size:12px;font-weight:800;color:var(--color-accent-700)">01</p><h3 style="margin:0 0 10px;font-size:20px;font-weight:900;text-transform:uppercase">Put urgent actions first</h3><p style="margin:0;font-size:15px;line-height:1.5">The most important tasks should be the easiest to find and complete.</p></div>
+        <div style="padding:32px;border-right:2px solid var(--color-text)"><p style="margin:0 0 12px;font-size:12px;font-weight:800;color:var(--color-accent-700)">02</p><h3 style="margin:0 0 10px;font-size:20px;font-weight:900;text-transform:uppercase">Minimize effort during anxiety</h3><p style="margin:0;font-size:15px;line-height:1.5">Every extra question or unclear step feels heavier in a high-emotion moment.</p></div>
+        <div style="padding:32px"><p style="margin:0 0 12px;font-size:12px;font-weight:800;color:var(--color-accent-700)">03</p><h3 style="margin:0 0 10px;font-size:20px;font-weight:900;text-transform:uppercase">Design with empathy</h3><p style="margin:0;font-size:15px;line-height:1.5">The product should not only work well. It should feel like it understands the user&rsquo;s situation.</p></div>
+      </div>
+    </section>
+    <section style="border-bottom:2px solid var(--color-text)">
+      <div style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px) 32px">
+        <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">From concept to structure</p>
+        <h2 style="margin:0;max-width:22ch;font-size:clamp(26px,4vw,54px);font-weight:900;line-height:.98;text-transform:uppercase;letter-spacing:-.02em">Move secondary features away from the critical path.</h2>
+      </div>
+      <figure style="margin:0;padding:20px;border-top:2px solid var(--color-text)"><img src="uploads/noah-07-exploration.webp" alt="Noah's Ark early design exploration" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">Early exploration around critical actions, navigation, reporting, and guidance.</figcaption></figure>
+      <figure style="margin:0;padding:20px;border-top:2px solid var(--color-text)"><img src="uploads/noah-08-wireframes.webp" alt="Noah's Ark wireframes" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">Mid-fidelity wireframes introduced clearer required fields, location context, review, and confirmation.</figcaption></figure>
+    </section>
+    <section style="border-bottom:2px solid var(--color-text)">
+      <div style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px) 32px">
+        <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Exploration &amp; interaction design</p>
+        <h2 style="margin:0;max-width:22ch;font-size:clamp(26px,4vw,54px);font-weight:900;line-height:.98;text-transform:uppercase;letter-spacing:-.02em">From a crowded platform to a clear recovery path.</h2>
+        <p style="margin:18px 0 0;max-width:62ch;font-size:16px;line-height:1.55">I explored sketches and concepts around critical actions, navigation, reporting flows, and guidance. Secondary features moved out of the critical path so the product could support action instead of encouraging browsing.</p>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));borderTop:2px solid var(--color-text)">
-        <div style="border-right:2px solid var(--color-text);padding:32px">
-          <p style="margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-accent-700)">Step 01</p>
-          <h3 style="margin:0 0 10px;font-size:18px;font-weight:800;text-transform:uppercase">Service blueprint</h3>
-          <p style="margin:0;font-size:15px;line-height:1.5">Mapped every handoff from found animal to adoption. The gaps were all at shift changes.</p>
-        </div>
-        <div style="border-right:2px solid var(--color-text);padding:32px">
-          <p style="margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-accent-700)">Step 02</p>
-          <h3 style="margin:0 0 10px;font-size:18px;font-weight:800;text-transform:uppercase">Paper wireframes</h3>
-          <p style="margin:0;font-size:15px;line-height:1.5">Tested three intake orders on paper before a pixel existed. Photo-first won every time.</p>
-        </div>
-        <div style="padding:32px">
-          <p style="margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-accent-700)">Step 03</p>
-          <h3 style="margin:0 0 10px;font-size:18px;font-weight:800;text-transform:uppercase">Usability, round 2</h3>
-          <p style="margin:0;font-size:15px;line-height:1.5">Eight volunteers, gloves on, one hand busy. Hit targets went up to 48px after that session.</p>
-        </div>
+        <div style="padding:30px;border-right:2px solid var(--color-text)"><h3 style="margin:0 0 10px;font-size:19px;font-weight:900;text-transform:uppercase">Guided reporting flow</h3><p style="margin:0;font-size:15px;line-height:1.5">Clear step indicators, plainly labeled required and optional fields, a progress bar, and encouraging microcopy make the experience feel shorter and more achievable.</p></div>
+        <div style="padding:30px;border-right:2px solid var(--color-text)"><h3 style="margin:0 0 10px;font-size:19px;font-weight:900;text-transform:uppercase">Location-centered search</h3><p style="margin:0;font-size:15px;line-height:1.5">Scannable cards prioritize a large photo, location, last-seen time, breed, and contact snippet, creating a neighborhood bulletin board instead of a gamified feed.</p></div>
+        <div style="padding:30px"><h3 style="margin:0 0 10px;font-size:19px;font-weight:900;text-transform:uppercase">One place for My Pets</h3><p style="margin:0;font-size:15px;line-height:1.5">A simpler dashboard manages animals, lost status, and reports without duplicate fields or confusing overlap between pet and user profiles.</p></div>
+      </div>
+    </section>
+    <section style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
+      <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">High fidelity &amp; key changes</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:34px;marginTop:28px">
+        <div><h3 style="margin:0 0 10px;font-size:20px;font-weight:900;text-transform:uppercase">A dramatically shorter report</h3><p style="margin:0;font-size:15px;line-height:1.5">The new flow starts with supportive language and reduces repetition, helping owners keep moving when they are anxious.</p></div>
+        <div><h3 style="margin:0 0 10px;font-size:20px;font-weight:900;text-transform:uppercase">Review before submission</h3><p style="margin:0;font-size:15px;line-height:1.5">A review step, stronger confirmation states, and clearer next-step guidance reduce uncertainty about whether a report is complete.</p></div>
+        <div><h3 style="margin:0 0 10px;font-size:20px;font-weight:900;text-transform:uppercase">Membership off the critical path</h3><p style="margin:0;font-size:15px;line-height:1.5">Wallet, store, donations, and premium features still exist, but they no longer interrupt the primary lost-and-found flows.</p></div>
+        <div><h3 style="margin:0 0 10px;font-size:20px;font-weight:900;text-transform:uppercase">Humanized microcopy</h3><p style="margin:0;font-size:15px;line-height:1.5">Labels and confirmations now sound like support: &ldquo;We&rsquo;re here to help you bring them home&rdquo; and &ldquo;Your report is live.&rdquo;</p></div>
+      </div>
+    </section>
+    <section style="border-bottom:2px solid var(--color-text)">
+      <div style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px) 32px">
+        <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">The redesigned flows</p>
+        <h2 style="margin:0;max-width:22ch;font-size:clamp(26px,4vw,54px);font-weight:900;line-height:.98;text-transform:uppercase;letter-spacing:-.02em">High fidelity, with empathy built into the details.</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));border-top:2px solid var(--color-text)">
+        <figure style="margin:0;padding:20px;border-right:2px solid var(--color-text);border-bottom:2px solid var(--color-text)"><img src="uploads/noah-09-reporting-flow.webp" alt="Noah's Ark guided reporting flow" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">Guided missing-pet reporting with clear progress and supportive microcopy.</figcaption></figure>
+        <figure style="margin:0;padding:20px;border-right:2px solid var(--color-text);border-bottom:2px solid var(--color-text)"><img src="uploads/noah-10-map-search.webp" alt="Noah's Ark map-centered lost and found search" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">Map-centered search with glanceable cards for location, time, breed, and contact.</figcaption></figure>
+        <figure style="margin:0;padding:20px;border-bottom:2px solid var(--color-text)"><img src="uploads/noah-11-my-pets.webp" alt="Noah's Ark My Pets dashboard" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">A simplified My Pets dashboard for status, reports, and animal management.</figcaption></figure>
+        <figure style="margin:0;padding:20px;border-right:2px solid var(--color-text)"><img src="uploads/noah-12-membership.webp" alt="Noah's Ark membership and monetization flow" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">Membership and monetization moved away from active crisis flows.</figcaption></figure>
+        <figure style="margin:0;padding:20px"><img src="uploads/noah-13-tone.webp" alt="Noah's Ark supportive tone and confirmation screens" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">Humanized confirmation states replace cold system language with reassurance.</figcaption></figure>
       </div>
     </section>
     <section style="background:var(--color-accent);color:var(--color-bg);padding:clamp(44px,6vw,104px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
-      <p style="margin:0 0 24px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-200)">Outcome</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:44px">
-        <div><p data-count style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">4 min</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Average intake, down from 20 minutes of paper plus retyping.</p></div>
-        <div><p data-count style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">0</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Duplicate records in the first three months after launch.</p></div>
-        <div><p data-count style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">+38%</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Adoption inquiries, once listings stopped going stale.</p></div>
+      <p style="margin:0 0 24px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-200)">Validation</p>
+      <h2 style="margin:0;max-width:22ch;font-size:clamp(28px,4vw,56px);font-weight:900;line-height:.98;text-transform:uppercase">The redesigned flow felt easier to understand and more comforting.</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:44px;marginTop:44px">
+        <div><p style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">5</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Moderated participants</p></div>
+        <div><p style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">60% &rarr; 100%</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Task completion</p></div>
+        <div><p style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">4.1 &rarr; 6.3</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Confidence out of 7</p></div>
+      </div>
+      <p style="margin:42px 0 0;max-width:64ch;font-size:16px;line-height:1.55;color:var(--color-accent-100)">Participants advanced through the redesigned flow with confidence, asked fewer clarification questions, and described the experience as easier to understand and more comforting overall.</p>
+    </section>
+    <figure style="margin:0;padding:clamp(20px,4vw,56px);background:var(--color-neutral-100);border-bottom:2px solid var(--color-text)">
+      <img src="uploads/noah-14-validation.webp" alt="Noah's Ark validation screens" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" />
+      <figcaption style="margin:12px 0 0;font-size:12px;line-height:1.4;color:var(--color-neutral-600)">Validation artifacts from the redesigned missing-pet and found-pet flows.</figcaption>
+    </figure>
+    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-bottom:2px solid var(--color-text)">
+      <div style="padding:clamp(40px,5vw,80px);border-right:2px solid var(--color-text)">
+        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">What I would explore next</h2>
+        <ul style="margin:0;padding-left:20px;font-size:16px;line-height:1.65">
+          <li>Automatically generated flyers to print</li>
+          <li>Location-based neighborhood notifications</li>
+          <li>Trust scores for community members who respond</li>
+          <li>Expanded usability testing with more users</li>
+          <li>Measurement once the product is in the wild</li>
+        </ul>
+      </div>
+      <div style="padding:clamp(40px,5vw,80px)">
+        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">Reflection</h2>
+        <p style="margin:0 0 14px;font-size:16px;line-height:1.55">The hardest part was not cleaning up the interface. It was rethinking the product around what users were actually experiencing: stress, urgency, and the need for support while trying to do the right thing quickly.</p>
+        <p style="margin:0;font-size:16px;line-height:1.55">That mindset shaped every design decision and pushed me to think beyond screens and flows toward what supportive product design can really look like.</p>
       </div>
     </section>
     <section style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between">
@@ -347,48 +456,126 @@
       <button type="button" onClick="{{ goHome }}" style="background:none;border:none;padding:0;font-family:Archivo,system-ui,sans-serif;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-700);cursor:pointer" style-hover="color:var(--color-text)">&larr; All work</button>
     </div>
     <header style="padding:clamp(40px,5vw,88px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
-      <p style="margin:0 0 16px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-700)">02 &middot; Bilingual healthcare AI</p>
-      <h1 style="margin:0;font-size:clamp(36px,6.4vw,88px);line-height:.92;font-weight:900;letter-spacing:-.03em;text-transform:uppercase">Lino's Pharmacy Chatbot</h1>
-      <p style="margin:24px 0 0;max-width:56ch;font-size:clamp(17px,1.6vw,21px);line-height:1.45;text-wrap:pretty">An independent pharmacy in the Valley wanted an AI assistant for refills and questions. The design work was mostly about restraint: what the bot is allowed to answer, and how visibly it hands you to a person.</p>
+      <p style="margin:0 0 16px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-700)">02 &middot; Healthcare website experience</p>
+      <h1 style="margin:0;font-size:clamp(40px,7vw,96px);line-height:.92;font-weight:900;letter-spacing:-.03em;text-transform:uppercase">Lino's Pharmacy</h1>
+      <p style="margin:24px 0 0;max-width:56ch;font-size:clamp(17px,1.6vw,21px);line-height:1.45;text-wrap:pretty">Pablo: making a pharmacy assistant easier to discover and use.</p>
+      <p style="margin:18px 0 0;max-width:62ch;font-size:16px;line-height:1.55;text-wrap:pretty">Lino&rsquo;s Pharmacy serves Roma and Rio Grande City, Texas. Patients needed to fill prescriptions, check medication status, and contact the pharmacy, but the website did not make those paths easy to find. I redesigned how Pablo was introduced so it felt clear, useful, familiar, and trustworthy.</p>
     </header>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border-bottom:2px solid var(--color-text)">
-      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Role</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">UX &amp; conversation design</p></div>
-      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Timeline</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">14 weeks</p></div>
-      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Team</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Pharmacist, 2 devs, me</p></div>
-      <div style="padding:28px"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Tools</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Figma, Dovetail</p></div>
+      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Role</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Freelance Product Designer</p></div>
+      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Scope</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Research, UX/UI design, wireframes, prototype, early validation</p></div>
+      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Timeline</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">4 weeks</p></div>
+      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Team</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Pharmacy stakeholders</p></div>
+      <div style="padding:28px"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Platform</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Website experience</p></div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));border-bottom:2px solid var(--color-text);background:var(--color-surface)">
-      <div style="padding:clamp(28px,4vw,48px);border-right:2px solid var(--color-text);display:flex;flex-direction:column;gap:12px">
-        <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-neutral-600)">Usuario</p>
-        <p style="margin:0;background:var(--color-bg);border:2px solid var(--color-text);padding:14px;font-size:16px;line-height:1.4">&iquest;Ya est&aacute; lista la medicina de mi mam&aacute;?</p>
-        <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-neutral-600)">Asistente</p>
-        <p style="margin:0;background:var(--color-text);color:var(--color-bg);border:2px solid var(--color-text);padding:14px;font-size:16px;line-height:1.4">S&iacute; &mdash; lista desde las 9:40 AM. <span style="display:block;margin-top:8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-accent-400)">Fuente: registro de resurtido</span></p>
-      </div>
-      <div style="padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;gap:12px">
-        <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-neutral-600)">User</p>
-        <p style="margin:0;background:var(--color-bg);border:2px solid var(--color-text);padding:14px;font-size:16px;line-height:1.4">Can she take this with her blood pressure pill?</p>
-        <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-accent-700)">Handoff</p>
-        <p style="margin:0;background:var(--color-accent);color:var(--color-bg);border:2px solid var(--color-text);padding:14px;font-size:16px;line-height:1.4">That is a question for the pharmacist. I am sending this chat to Lino now &mdash; he answers in about 10 minutes.</p>
-      </div>
+    <div style="min-height:340px;background:var(--color-text);color:var(--color-bg);display:flex;align-items:flex-end;padding:clamp(32px,5vw,72px);border-bottom:2px solid var(--color-text)">
+      <p style="margin:0;max-width:23ch;font-size:clamp(34px,6vw,86px);font-weight:900;line-height:.94;text-transform:uppercase;letter-spacing:-.03em">Make the helpful thing easier to find.</p>
     </div>
+    <figure style="margin:0;padding:clamp(20px,4vw,56px);background:var(--color-neutral-100);border-bottom:2px solid var(--color-text)">
+      <img src="uploads/lino-01-overview.webp" alt="Lino's Pharmacy website and Pablo assistant overview" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" />
+      <figcaption style="margin:12px 0 0;font-size:12px;line-height:1.4;color:var(--color-neutral-600)">Pablo becomes a clear starting point for refills, medication status, and pharmacy questions.</figcaption>
+    </figure>
+    <section style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
+      <p style="margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Outcome at a glance</p>
+      <h2 style="margin:0;max-width:20ch;font-size:clamp(28px,4vw,54px);font-weight:900;line-height:.98;text-transform:uppercase;letter-spacing:-.02em">Make Pablo easier to discover, understand, and use.</h2>
+      <p style="margin:22px 0 0;max-width:62ch;font-size:17px;line-height:1.55">The redesign connected Pablo to real pharmacy tasks instead of treating it like just another feature. In early validation, 70% of users found the instructions and successfully texted or called Pablo to complete a pharmacy-related task.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));marginTop:36px;border:2px solid var(--color-text)">
+        <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:clamp(42px,6vw,72px);font-weight:900;line-height:1">70%</p><p style="margin:10px 0 0;font-size:14px;line-height:1.4">Found Pablo&rsquo;s instructions and completed a pharmacy-related task</p></div>
+        <div style="padding:28px"><p style="margin:0;font-size:clamp(42px,6vw,72px);font-weight:900;line-height:1">2</p><p style="margin:10px 0 0;font-size:14px;line-height:1.4">Familiar entry points: text or call</p></div>
+      </div>
+    </section>
+    <figure style="margin:0;padding:clamp(20px,4vw,56px);background:var(--color-neutral-100);border-bottom:2px solid var(--color-text)">
+      <img src="uploads/lino-02-pablo.webp" alt="Pablo pharmacy assistant concept" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" />
+      <figcaption style="margin:12px 0 0;font-size:12px;line-height:1.4;color:var(--color-neutral-600)">Pablo is introduced as an approachable service, not as a technology feature patients have to decode.</figcaption>
+    </figure>
     <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-bottom:2px solid var(--color-text)">
       <div style="padding:clamp(40px,5vw,80px);border-right:2px solid var(--color-text)">
         <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">The problem</h2>
-        <p style="margin:0 0 14px;font-size:16px;line-height:1.55;text-wrap:pretty">The phone rang all day with three questions: is my refill ready, how much will it cost, and can I take this with that. Most callers preferred Spanish; the staff answering were two people also filling prescriptions.</p>
-        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">Twelve interviews told me the fear was specific &mdash; not &ldquo;I don't trust AI,&rdquo; but &ldquo;if it is wrong about my mother's medication, who do I call.&rdquo;</p>
+        <p style="margin:0 0 14px;font-size:16px;line-height:1.55;text-wrap:pretty">Pablo already existed, but the website was not doing enough to guide patients toward it. In fact, the only way it was being advertised was by word of mouth.</p>
+        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">Patients first had to realize Pablo was there, understand what it could do, and feel confident choosing it over calling, driving through, or walking in.</p>
       </div>
       <div style="padding:clamp(40px,5vw,80px)">
-        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">What I did</h2>
-        <p style="margin:0 0 14px;font-size:16px;line-height:1.55;text-wrap:pretty">Wrote the scope as a visible contract: the bot handles status, hours, cost, and location. Anything clinical routes to the pharmacist with the conversation attached, and says so before you finish typing.</p>
-        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">Language follows the user mid-sentence instead of a toggle they have to find, and every answer shows its source: &ldquo;from your refill record, updated 9:40 AM.&rdquo;</p>
+        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">My role</h2>
+        <p style="margin:0 0 14px;font-size:16px;line-height:1.55;text-wrap:pretty">I led UX from research through early validation: reviewing the website, identifying friction, speaking with patients, and translating what I learned into a clearer introduction to Pablo.</p>
+        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">I created sketches, wireframes, and final designs that made Pablo easier to find, easier to understand, and easier to use for familiar pharmacy tasks.</p>
       </div>
     </section>
+    <section style="border-bottom:2px solid var(--color-text)">
+      <div style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px) 32px">
+        <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">The current experience</p>
+        <h2 style="margin:0;max-width:22ch;font-size:clamp(26px,4vw,54px);font-weight:900;line-height:.98;text-transform:uppercase;letter-spacing:-.02em">The path existed, but it was not obvious.</h2>
+        <p style="margin:18px 0 0;max-width:62ch;font-size:16px;line-height:1.55">The existing experience had the ingredients patients needed, but not the guidance to connect them. The redesign focused on making the next step visible and familiar.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));border-top:2px solid var(--color-text)">
+        <figure style="margin:0;padding:20px;border-right:2px solid var(--color-text);border-bottom:2px solid var(--color-text)"><img src="uploads/lino-03-problem.webp" alt="Pablo assistant and pharmacy task concepts" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">Pablo framed around real tasks instead of vague technology.</figcaption></figure>
+        <figure style="margin:0;padding:20px;border-right:2px solid var(--color-text);border-bottom:2px solid var(--color-text)"><img src="uploads/lino-04-current-site.webp" alt="Current Lino's Pharmacy website experience" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">The pharmacy site made the refill and status path difficult to discover.</figcaption></figure>
+        <figure style="margin:0;padding:20px;border-bottom:2px solid var(--color-text)"><img src="uploads/lino-05-app-path.webp" alt="Existing medication status and refill app path" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">An existing app path needed more context about when to text or call Pablo.</figcaption></figure>
+      </div>
+    </section>
+    <section style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
+      <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Research</p>
+      <h2 style="margin:0;max-width:22ch;font-size:clamp(26px,4vw,54px);font-weight:900;line-height:.98;text-transform:uppercase;letter-spacing:-.02em">Convenience matters, but familiarity and trust matter too.</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;marginTop:34px">
+        <blockquote style="margin:0;padding:24px;background:var(--color-neutral-100);border:2px solid var(--color-text);font-size:20px;line-height:1.3;font-weight:800">&ldquo;Es mas facil ir a la farmacia.&rdquo;<footer style="margin-top:14px;font-size:13px;line-height:1.4;font-weight:400">&ldquo;It&rsquo;s easier to go to the pharmacy.&rdquo;</footer></blockquote>
+        <blockquote style="margin:0;padding:24px;background:var(--color-neutral-100);border:2px solid var(--color-text);font-size:20px;line-height:1.3;font-weight:800">&ldquo;I&rsquo;m always running, I need something faster than the drive-through.&rdquo;</blockquote>
+        <blockquote style="margin:0;padding:24px;background:var(--color-neutral-100);border:2px solid var(--color-text);font-size:20px;line-height:1.3;font-weight:800">&ldquo;Ya estoy vieja para apps.&rdquo;<footer style="margin-top:14px;font-size:13px;line-height:1.4;font-weight:400">&ldquo;I&rsquo;m old for apps.&rdquo;</footer></blockquote>
+      </div>
+      <p style="margin:28px 0 0;max-width:62ch;font-size:16px;line-height:1.55">Patients wanted speed without complexity. Older participants needed clarity and reassurance, while more experienced app users expected a faster, more convenient path.</p>
+    </section>
+    <figure style="margin:0;padding:clamp(20px,4vw,56px);background:var(--color-neutral-100);border-bottom:2px solid var(--color-text)">
+      <img src="uploads/lino-06-exploration.webp" alt="Lino's Pharmacy Pablo interaction exploration" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" />
+      <figcaption style="margin:12px 0 0;font-size:12px;line-height:1.4;color:var(--color-neutral-600)">Exploring how to make Pablo feel like a familiar pharmacy service, not another app to learn.</figcaption>
+    </figure>
+    <section style="border-bottom:2px solid var(--color-text)">
+      <div style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px) 32px">
+        <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Wireframes</p>
+        <h2 style="margin:0;max-width:22ch;font-size:clamp(26px,4vw,54px);font-weight:900;line-height:.98;text-transform:uppercase;letter-spacing:-.02em">Make the next action feel obvious.</h2>
+        <p style="margin:18px 0 0;max-width:62ch;font-size:16px;line-height:1.55">The opportunity was to answer three simple questions before asking patients to act: who Pablo is, what he can help with, and whether to text or call.</p>
+      </div>
+      <figure style="margin:0;padding:20px;border-top:2px solid var(--color-text)"><img src="uploads/lino-07-wireframes.webp" alt="Lino's Pharmacy Pablo wireframes" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">Wireframes connect Pablo to refills, medication status, and questions the pharmacy already receives.</figcaption></figure>
+    </section>
+    <section style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
+      <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Final solution</p>
+      <h2 style="margin:0;max-width:22ch;font-size:clamp(26px,4vw,54px);font-weight:900;line-height:.98;text-transform:uppercase;letter-spacing:-.02em">A clearer invitation to get help.</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;marginTop:34px">
+        <div style="padding:24px;border:2px solid var(--color-text)"><h3 style="margin:0 0 10px;font-size:19px;font-weight:900;text-transform:uppercase">Connected to real tasks</h3><p style="margin:0;font-size:15px;line-height:1.5">Refills, medication status, and pharmacy questions give Pablo a clear reason to exist.</p></div>
+        <div style="padding:24px;border:2px solid var(--color-text)"><h3 style="margin:0 0 10px;font-size:19px;font-weight:900;text-transform:uppercase">Clearer entry points</h3><p style="margin:0;font-size:15px;line-height:1.5">Patients can see when to text and when to call without searching through the page.</p></div>
+        <div style="padding:24px;border:2px solid var(--color-text)"><h3 style="margin:0 0 10px;font-size:19px;font-weight:900;text-transform:uppercase">Simpler language</h3><p style="margin:0;font-size:15px;line-height:1.5">The introduction uses plain language that reduces the work of figuring out what Pablo does.</p></div>
+        <div style="padding:24px;border:2px solid var(--color-text)"><h3 style="margin:0 0 10px;font-size:19px;font-weight:900;text-transform:uppercase">Familiar interaction</h3><p style="margin:0;font-size:15px;line-height:1.5">Texting and calling feel more approachable than asking patients to learn a new tool.</p></div>
+      </div>
+    </section>
+    <figure style="margin:0;padding:clamp(20px,4vw,56px);background:var(--color-neutral-100);border-bottom:2px solid var(--color-text)">
+      <img src="uploads/lino-08-final.webp" alt="Lino's Pharmacy final Pablo experience" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" />
+      <figcaption style="margin:12px 0 0;font-size:12px;line-height:1.4;color:var(--color-neutral-600)">The final direction makes Pablo visible, understandable, and actionable from the pharmacy website.</figcaption>
+    </figure>
     <section style="background:var(--color-accent);color:var(--color-bg);padding:clamp(44px,6vw,104px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
-      <p style="margin:0 0 24px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-200)">Outcome</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:44px">
-        <div><p data-count style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">&minus;46%</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Inbound calls about refill status in the first month.</p></div>
-        <div><p data-count style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">68%</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Of chats started in Spanish and never needed a toggle.</p></div>
-        <div><p data-count style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">100%</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Of clinical questions routed to the pharmacist, by design.</p></div>
+      <p style="margin:0 0 24px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-200)">Early validation</p>
+      <h2 style="margin:0;max-width:22ch;font-size:clamp(28px,4vw,56px);font-weight:900;line-height:.98;text-transform:uppercase">The helpful path was easier to find.</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:44px;marginTop:44px">
+        <div><p style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">70%</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Found Pablo&rsquo;s instructions and completed a pharmacy-related task.</p></div>
+        <div><p style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">2</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Core tasks tested: finding instructions and checking medication status or placing an order.</p></div>
+      </div>
+      <p style="margin:42px 0 0;max-width:64ch;font-size:16px;line-height:1.55;color:var(--color-accent-100)">Older participants still needed stronger onboarding and clearer guidance about when to text or call. That became the next opportunity, alongside more visible cues for refills and status.</p>
+    </section>
+    <figure style="margin:0;padding:clamp(20px,4vw,56px);background:var(--color-neutral-100);border-bottom:2px solid var(--color-text)">
+      <img src="uploads/lino-09-validation.webp" alt="Lino's Pharmacy Pablo validation artifacts" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" />
+      <figcaption style="margin:12px 0 0;font-size:12px;line-height:1.4;color:var(--color-neutral-600)">Early validation focused on whether patients could find Pablo and complete a familiar pharmacy task.</figcaption>
+    </figure>
+    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-bottom:2px solid var(--color-text)">
+      <div style="padding:clamp(40px,5vw,80px);border-right:2px solid var(--color-text)">
+        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">What I would explore next</h2>
+        <ul style="margin:0;padding-left:20px;font-size:16px;line-height:1.65">
+          <li>Stronger onboarding for older and less confident users</li>
+          <li>Clearer guidance for when to text versus call</li>
+          <li>More visible cues for refills and medication status</li>
+          <li>Broader validation with patients across both locations</li>
+          <li>Post-launch measurement of task completion and confidence</li>
+        </ul>
+      </div>
+      <div style="padding:clamp(40px,5vw,80px)">
+        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">Reflection</h2>
+        <p style="margin:0 0 14px;font-size:16px;line-height:1.55">The best solution was not adding more technology. It was meeting patients where they already were: with a pharmacy they know, a task they understand, and an interaction that feels familiar.</p>
+        <p style="margin:0;font-size:16px;line-height:1.55">Good digital healthcare experiences can be simple, supportive, and respectful of the confidence people bring to the screen.</p>
       </div>
     </section>
     <section style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between">
@@ -404,53 +591,93 @@
       <button type="button" onClick="{{ goHome }}" style="background:none;border:none;padding:0;font-family:Archivo,system-ui,sans-serif;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-700);cursor:pointer" style-hover="color:var(--color-text)">&larr; All work</button>
     </div>
     <header style="padding:clamp(40px,5vw,88px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
-      <p style="margin:0 0 16px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-700)">03 &middot; AI inside a sales CRM</p>
-      <h1 style="margin:0;font-size:clamp(40px,7vw,96px);line-height:.92;font-weight:900;letter-spacing:-.03em;text-transform:uppercase">CRM AI</h1>
-      <p style="margin:24px 0 0;max-width:56ch;font-size:clamp(17px,1.6vw,21px);line-height:1.45;text-wrap:pretty">Reps were being handed AI summaries and next-step suggestions they had no way to check. Adoption was low and the complaint was always the same: where did this come from?</p>
+      <p style="margin:0 0 16px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-700)">03 &middot; AI inside Salesforce workflows</p>
+      <h1 style="margin:0;font-size:clamp(40px,7vw,96px);line-height:.92;font-weight:900;letter-spacing:-.03em;text-transform:uppercase">Workforce CRM</h1>
+      <p style="margin:24px 0 0;max-width:56ch;font-size:clamp(17px,1.6vw,21px);line-height:1.45;text-wrap:pretty">AI assistant for Salesforce workflows.</p>
+      <p style="margin:18px 0 0;max-width:62ch;font-size:16px;line-height:1.55;text-wrap:pretty">An exploration into how AI could help employees locate information faster, automate repetitive tasks, and get support without leaving the workflow.</p>
+      <p style="margin:16px 0 0;max-width:62ch;font-size:13px;line-height:1.5;color:var(--color-neutral-600);text-wrap:pretty">Due to NDA constraints, company details, visuals, and data in this case study have been anonymized and reconstructed.</p>
     </header>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border-bottom:2px solid var(--color-text)">
-      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Role</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Product designer</p></div>
-      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Timeline</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">12 weeks</p></div>
-      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Team</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">PM, 4 engineers, me</p></div>
-      <div style="padding:28px"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Tools</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Figma, Amplitude</p></div>
+      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Role</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Product Designer</p></div>
+      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Timeline</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">3 months</p></div>
+      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Type</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Exploration / Discovery</p></div>
+      <div style="padding:28px"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Platform</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Salesforce CRM</p></div>
     </div>
-    <div style="border-bottom:2px solid var(--color-text);background:var(--color-surface);padding:clamp(32px,5vw,72px)">
-      <div style="max-width:720px;border:2px solid var(--color-text);background:var(--color-bg)">
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 20px;border-bottom:2px solid var(--color-text)">
-          <span style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase">Suggested next step</span>
-          <span style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--color-accent-200);color:var(--color-accent-700);padding:5px 8px">AI draft</span>
-        </div>
-        <p style="margin:0;padding:20px;font-size:17px;line-height:1.45;border-bottom:2px solid var(--color-neutral-300)">Send pricing for the 40-seat tier before Friday &mdash; procurement asked twice on the last call.</p>
-        <div style="padding:18px 20px;border-bottom:2px solid var(--color-neutral-300)">
-          <p style="margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Because of</p>
-          <p style="margin:0;font-size:14px;line-height:1.5;color:var(--color-neutral-800)">Call transcript, Sep 12 (14:06) &middot; Email thread &ldquo;Seat count&rdquo; &middot; Stage: Evaluation</p>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;padding:18px 20px">
-          <span style="background:var(--color-accent);color:var(--color-bg);padding:11px 16px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase">Accept</span>
-          <span style="border:2px solid var(--color-text);padding:9px 16px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase">Edit</span>
-          <span style="border:2px solid var(--color-neutral-300);color:var(--color-neutral-600);padding:9px 16px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase">Dismiss</span>
-        </div>
-      </div>
-      <p style="margin:16px 0 0;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-600)">Key screen: every suggestion carries its sources and stays editable</p>
+    <div style="min-height:340px;background:var(--color-text);color:var(--color-bg);display:flex;align-items:flex-end;padding:clamp(32px,5vw,72px);border-bottom:2px solid var(--color-text)">
+      <p style="margin:0;max-width:23ch;font-size:clamp(34px,6vw,86px);font-weight:900;line-height:.94;text-transform:uppercase;letter-spacing:-.03em">Make the workflow feel lighter.</p>
     </div>
+    <figure style="margin:0;padding:clamp(20px,4vw,56px);background:var(--color-neutral-100);border-bottom:2px solid var(--color-text)">
+      <img src="uploads/crm-01-overview.webp" alt="Anonymized Salesforce CRM AI assistant overview" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" />
+      <figcaption style="margin:12px 0 0;font-size:12px;line-height:1.4;color:var(--color-neutral-600)">An AI assistant concept embedded inside the existing Salesforce environment.</figcaption>
+    </figure>
     <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-bottom:2px solid var(--color-text)">
       <div style="padding:clamp(40px,5vw,80px);border-right:2px solid var(--color-text)">
         <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">The problem</h2>
-        <p style="margin:0 0 14px;font-size:16px;line-height:1.55;text-wrap:pretty">The model was good. The presentation was not. Suggestions arrived as finished sentences with no provenance, no way to correct them, and no memory of being dismissed &mdash; so reps stopped looking.</p>
-        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">Nine ride-alongs showed the real workflow: reps trust their own notes first, and anything they cannot trace they ignore.</p>
+        <p style="margin:0 0 14px;font-size:16px;line-height:1.55;text-wrap:pretty">Salesforce supported complex internal workflows, but day-to-day requests still required context switching between records, tools, and support resources. Employees were spending time locating information instead of acting on it.</p>
+        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">The exploration asked how AI could enhance internal Salesforce workflows while remaining useful, efficient, and easy to trust.</p>
       </div>
       <div style="padding:clamp(40px,5vw,80px)">
-        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">What I did</h2>
-        <p style="margin:0 0 14px;font-size:16px;line-height:1.55;text-wrap:pretty">Made every suggestion cite the calls, emails, and fields it came from, and made editing the default action rather than a hidden one. Dismissals now teach the system instead of disappearing.</p>
-        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">Labeled AI output as a draft everywhere it appears, so nothing reaches a customer without a person having read it.</p>
+        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">My role</h2>
+        <p style="margin:0 0 14px;font-size:16px;line-height:1.55;text-wrap:pretty">I partnered with associates, stakeholders, and managers in discovery workshops, interviewed five users with one to ten years of experience, and identified the moments where information became difficult to find.</p>
+        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">From there I mapped and designed two guided chatbot flows, established the conversation cadence, and collaborated with content design to make each step clear.</p>
+      </div>
+    </section>
+    <section style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
+      <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Discovery</p>
+      <h2 style="margin:0;max-width:22ch;font-size:clamp(26px,4vw,54px);font-weight:900;line-height:.98;text-transform:uppercase;letter-spacing:-.02em">People did not need another place to work. They needed help inside the place they already used.</h2>
+      <p style="margin:18px 0 0;max-width:62ch;font-size:16px;line-height:1.55">Joint FigJam workshops with associates, stakeholders, and managers surfaced where things felt confusing, inefficient, or frustrating. Five user interviews then helped identify the moments where support mattered most.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;marginTop:34px">
+        <blockquote style="margin:0;padding:24px;background:var(--color-neutral-100);border:2px solid var(--color-text);font-size:19px;line-height:1.35;font-weight:800">&ldquo;I get anxiety when I can&rsquo;t find certain answers, and I have calls piled up already.&rdquo;</blockquote>
+        <blockquote style="margin:0;padding:24px;background:var(--color-neutral-100);border:2px solid var(--color-text);font-size:19px;line-height:1.35;font-weight:800">&ldquo;I can&rsquo;t help everyone at the same time.&rdquo;</blockquote>
+        <blockquote style="margin:0;padding:24px;background:var(--color-neutral-100);border:2px solid var(--color-text);font-size:19px;line-height:1.35;font-weight:800">&ldquo;Sometimes the chat is busy, and I don&rsquo;t want to bother people.&rdquo;</blockquote>
+      </div>
+    </section>
+    <section style="border-bottom:2px solid var(--color-text)">
+      <div style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px) 32px">
+        <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Identifying the two priority flows</p>
+        <h2 style="margin:0;max-width:22ch;font-size:clamp(26px,4vw,54px);font-weight:900;line-height:.98;text-transform:uppercase;letter-spacing:-.02em">Simplify the moments that caused the most confusion.</h2>
+        <p style="margin:18px 0 0;max-width:62ch;font-size:16px;line-height:1.55">In both priority flows, users were looking for specific information, but the journey to reach it was convoluted and required several steps. Instead of reworking the entire CRM, I focused the exploration on two high-friction paths.</p>
+      </div>
+      <figure style="margin:0;padding:20px;border-top:2px solid var(--color-text)"><img src="uploads/crm-02-flows.png" alt="Anonymized Salesforce CRM priority chatbot flows" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">Flow maps make the two priority journeys visible and give the assistant a clear job to do.</figcaption></figure>
+    </section>
+    <section style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
+      <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Solution</p>
+      <h2 style="margin:0;max-width:22ch;font-size:clamp(26px,4vw,54px);font-weight:900;line-height:.98;text-transform:uppercase;letter-spacing:-.02em">Guided chatbot flows inside the existing environment.</h2>
+      <p style="margin:18px 0 0;max-width:62ch;font-size:16px;line-height:1.55">The solution optimized two sticky flows instead of asking people to learn a completely new tool. Conversation cadence, content, and step-by-step guidance worked together to help employees locate information and take action with less friction.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;marginTop:34px">
+        <div style="padding:24px;border:2px solid var(--color-text)"><h3 style="margin:0 0 10px;font-size:19px;font-weight:900;text-transform:uppercase">Stay in context</h3><p style="margin:0;font-size:15px;line-height:1.5">The assistant works within the Salesforce environment employees already know.</p></div>
+        <div style="padding:24px;border:2px solid var(--color-text)"><h3 style="margin:0 0 10px;font-size:19px;font-weight:900;text-transform:uppercase">Guide step by step</h3><p style="margin:0;font-size:15px;line-height:1.5">Conversation cadence turns complex requests into a clear sequence of actions.</p></div>
+        <div style="padding:24px;border:2px solid var(--color-text)"><h3 style="margin:0 0 10px;font-size:19px;font-weight:900;text-transform:uppercase">Make support accessible</h3><p style="margin:0;font-size:15px;line-height:1.5">Common answers become easier to reach when the support queue is busy.</p></div>
       </div>
     </section>
     <section style="background:var(--color-accent);color:var(--color-bg);padding:clamp(44px,6vw,104px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
-      <p style="margin:0 0 24px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-200)">Outcome</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:44px">
-        <div><p data-count style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">3.1&times;</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Weekly use of AI suggestions after the provenance redesign.</p></div>
-        <div><p data-count style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">72%</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Of accepted drafts were edited first &mdash; exactly the intent.</p></div>
-        <div><p data-count style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">9</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Ride-alongs that shaped the final interaction model.</p></div>
+      <p style="margin:0 0 24px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-200)">Validation</p>
+      <h2 style="margin:0;max-width:22ch;font-size:clamp(28px,4vw,56px);font-weight:900;line-height:.98;text-transform:uppercase">The guided flows felt clear and confident to most testers.</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:44px;marginTop:44px">
+        <div><p data-count style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">90%</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Completion rate across the two guided chatbot flows.</p></div>
+        <div><p data-count style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">5</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Users interviewed during discovery.</p></div>
+        <div><p data-count style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">2</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Priority flows scoped and tested.</p></div>
+      </div>
+      <p style="margin:42px 0 0;max-width:64ch;font-size:16px;line-height:1.55;color:var(--color-accent-100)">Associates, stakeholders, managers, and engineers tested the prototypes. Most navigated the experience confidently; the remaining friction became a clear direction for future discovery.</p>
+    </section>
+    <figure style="margin:0;padding:clamp(20px,4vw,56px);background:var(--color-neutral-100);border-bottom:2px solid var(--color-text)">
+      <img src="uploads/crm-03-validation.png" alt="Anonymized Salesforce CRM chatbot validation screens" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" />
+      <figcaption style="margin:12px 0 0;font-size:12px;line-height:1.4;color:var(--color-neutral-600)">Prototype validation centered on whether people could complete both flows without needing extra support.</figcaption>
+    </figure>
+    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-bottom:2px solid var(--color-text)">
+      <div style="padding:clamp(40px,5vw,80px);border-right:2px solid var(--color-text)">
+        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">For the future</h2>
+        <ul style="margin:0;padding-left:20px;font-size:16px;line-height:1.65">
+          <li>Continue discovering additional employee needs</li>
+          <li>Prioritize more return-related use cases for the assistant</li>
+          <li>Expand validation across roles and levels of experience</li>
+          <li>Measure confidence and time saved after launch</li>
+        </ul>
+      </div>
+      <div style="padding:clamp(40px,5vw,80px)">
+        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">Reflection</h2>
+        <p style="margin:0 0 14px;font-size:16px;line-height:1.55">Great UX work is not always inventing something from scratch. It can be understanding how people navigate the system they already have and making that journey better.</p>
+        <p style="margin:0;font-size:16px;line-height:1.55">Research, content, and design need to work hand in hand. Clear guidance and structured conversation can make a rigid framework feel more helpful and natural.</p>
       </div>
     </section>
     <section style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between">
