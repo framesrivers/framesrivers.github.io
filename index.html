@@ -47,6 +47,37 @@
   @media (prefers-reduced-motion: reduce) {
     .profile-badge-wrap .profile-badge, .profile-badge-wrap .profile-heart { transition:none; }
   }
+
+  /* Case-study editorial layout */
+  .case-page { background:var(--color-bg); }
+  .case-page [id$="-define"], .case-page [id$="-research"], .case-page [id$="-solution"], .case-page [id$="-validation"] { scroll-margin-top:24px; }
+  .case-index { display:flex; flex-wrap:wrap; gap:0; border-bottom:2px solid var(--color-text); background:var(--color-bg); }
+  .case-index a { flex:1 1 150px; padding:16px 20px; border-right:2px solid var(--color-text); color:var(--color-text); font-size:11px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; text-decoration:none; }
+  .case-index a:last-child { border-right:0; }
+  .case-index a:hover { background:var(--color-accent-200); color:var(--color-text); }
+  .case-define { display:grid; grid-template-columns:minmax(150px,.34fr) 1fr; border-bottom:2px solid var(--color-text); background:#fff; }
+  .case-define__rail { padding:clamp(28px,5vw,76px) clamp(20px,4vw,56px); border-right:2px solid var(--color-text); background:#f1f4b5; }
+  .case-define__rail h2 { margin:0; color:#9ba21d; font-size:clamp(34px,6vw,82px); font-weight:900; line-height:.9; letter-spacing:-.04em; }
+  .case-define__body { padding:clamp(24px,4vw,64px); }
+  .case-row { display:grid; grid-template-columns:minmax(170px,.48fr) 1.52fr; gap:clamp(20px,4vw,60px); padding:0 0 28px; margin:0 0 28px; border-bottom:1px solid var(--color-neutral-300); }
+  .case-row:last-child { padding-bottom:0; margin-bottom:0; border-bottom:0; }
+  .case-row h3 { margin:0; font-size:clamp(23px,3vw,36px); line-height:.96; font-weight:900; letter-spacing:-.025em; text-transform:uppercase; }
+  .case-row p, .case-row li { font-size:15px; line-height:1.55; }
+  .case-row p { margin:0 0 12px; }
+  .case-row p:last-child { margin-bottom:0; }
+  .case-row ul { margin:0; padding-left:20px; }
+  .case-highlight { margin:clamp(24px,4vw,56px) 0; padding:clamp(24px,4vw,48px); border:2px solid var(--color-text); background:#f3f3ff; }
+  .case-highlight h2 { margin:0 0 16px; max-width:18ch; font-size:clamp(28px,4vw,52px); line-height:.96; text-transform:uppercase; }
+  .case-highlight p { margin:0; max-width:62ch; font-size:16px; line-height:1.55; }
+  .case-page > figure { background:#fafaff; }
+  .case-page > figure img { border-color:var(--color-text); }
+  @media (max-width:720px) {
+    .case-define { grid-template-columns:1fr; }
+    .case-define__rail { border-right:0; border-bottom:2px solid var(--color-text); padding-bottom:24px; }
+    .case-row { grid-template-columns:1fr; gap:12px; }
+    .case-index a { flex-basis:50%; border-bottom:1px solid var(--color-text); }
+    .case-index a:nth-child(even) { border-right:0; }
+  }
 </style>
 </helmet>
 
@@ -267,7 +298,7 @@
   </sc-if>
 
   <sc-if value="{{ isNoah }}" hint-placeholder-val="{{ false }}">
-  <article data-page>
+  <article data-page class="case-page">
     <div style="padding:22px clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
       <button type="button" onClick="{{ goHome }}" style="background:none;border:none;padding:0;font-family:Archivo,system-ui,sans-serif;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-700);cursor:pointer" style-hover="color:var(--color-text)">&larr; All work</button>
     </div>
@@ -284,6 +315,22 @@
       <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Team</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Founder, developers, copy designer</p></div>
       <div style="padding:28px"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Platform</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Mobile app</p></div>
     </div>
+    <nav class="case-index" aria-label="Noah's Ark case study sections">
+      <a href="#noah-define">Define</a><a href="#noah-audit">Audit</a><a href="#noah-research">Research</a><a href="#noah-solution">Solution</a><a href="#noah-validation">Validation</a>
+    </nav>
+    <section class="case-define" id="noah-define">
+      <div class="case-define__rail"><h2>Define</h2></div>
+      <div class="case-define__body">
+        <div class="case-row">
+          <h3>Problem<br />statement</h3>
+          <div><p>Noah&rsquo;s Ark had many helpful features, but the urgent actions people needed during a missing-pet crisis were buried among donations, store content, and community features.</p><p>The product behaved like a broad platform when users needed reassurance, clarity, and one clear next step.</p></div>
+        </div>
+        <div class="case-row">
+          <h3>Possible<br />solutions</h3>
+          <div><p>Based on the audit and research, I focused the redesign around a smaller set of priorities:</p><ul><li>Make report and recovery actions visible immediately.</li><li>Shorten reporting with clear progress, review, and confirmation.</li><li>Keep community and monetization features available without competing with crisis flows.</li></ul></div>
+        </div>
+      </div>
+    </section>
     <div style="min-height:340px;background:var(--color-text);color:var(--color-bg);display:flex;align-items:flex-end;padding:clamp(32px,5vw,72px);border-bottom:2px solid var(--color-text)">
       <p style="margin:0;max-width:22ch;font-size:clamp(34px,6vw,86px);font-weight:900;line-height:.94;text-transform:uppercase;letter-spacing:-.03em">Make the next step feel possible.</p>
     </div>
@@ -318,7 +365,7 @@
         <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">I collaborated with the copy designer, founder, and developers to refine the tone and keep the redesign grounded in both user needs and product realities.</p>
       </div>
     </section>
-    <section style="border-bottom:2px solid var(--color-text)">
+    <section id="noah-audit" style="border-bottom:2px solid var(--color-text)">
       <div style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px) 32px">
         <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Audit</p>
         <h2 style="margin:0;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">Understanding the current experience</h2>
@@ -342,7 +389,7 @@
         <figure style="margin:0;padding:20px"><img src="uploads/noah-05-report-audit.webp" alt="Audit of the Noah's Ark lost pet report" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">A monetization interruption pulled attention away from completing a report.</figcaption></figure>
       </div>
     </section>
-    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-bottom:2px solid var(--color-text)">
+    <section id="noah-research" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-bottom:2px solid var(--color-text)">
       <div style="padding:clamp(40px,5vw,80px);border-right:2px solid var(--color-text)">
         <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Research</p>
         <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">Stress changes how people move through a product</h2>
@@ -359,7 +406,7 @@
       <img src="uploads/noah-06-research.webp" alt="Noah's Ark research synthesis" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" />
       <figcaption style="margin:12px 0 0;font-size:12px;line-height:1.4;color:var(--color-neutral-600)">Research synthesis: real recovery behavior is speedy, functional, and community-first.</figcaption>
     </figure>
-    <section style="border-bottom:2px solid var(--color-text)">
+    <section id="noah-solution" style="border-bottom:2px solid var(--color-text)">
       <div style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px) 32px">
         <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Direction</p>
         <h2 style="margin:0;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">Three principles for a more supportive product</h2>
@@ -412,7 +459,7 @@
         <figure style="margin:0;padding:20px"><img src="uploads/noah-13-tone.webp" alt="Noah's Ark supportive tone and confirmation screens" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">Humanized confirmation states replace cold system language with reassurance.</figcaption></figure>
       </div>
     </section>
-    <section style="background:var(--color-accent);color:var(--color-bg);padding:clamp(44px,6vw,104px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
+    <section id="noah-validation" style="background:var(--color-accent);color:var(--color-bg);padding:clamp(44px,6vw,104px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
       <p style="margin:0 0 24px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-200)">Validation</p>
       <h2 style="margin:0;max-width:22ch;font-size:clamp(28px,4vw,56px);font-weight:900;line-height:.98;text-transform:uppercase">The redesigned flow felt easier to understand and more comforting.</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:44px;marginTop:44px">
@@ -451,7 +498,7 @@
   </sc-if>
 
   <sc-if value="{{ isLino }}" hint-placeholder-val="{{ false }}">
-  <article data-page>
+  <article data-page class="case-page">
     <div style="padding:22px clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
       <button type="button" onClick="{{ goHome }}" style="background:none;border:none;padding:0;font-family:Archivo,system-ui,sans-serif;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-700);cursor:pointer" style-hover="color:var(--color-text)">&larr; All work</button>
     </div>
@@ -468,6 +515,22 @@
       <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Team</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Pharmacy stakeholders</p></div>
       <div style="padding:28px"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Platform</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Website experience</p></div>
     </div>
+    <nav class="case-index" aria-label="Lino's Pharmacy case study sections">
+      <a href="#lino-define">Define</a><a href="#lino-current">Current experience</a><a href="#lino-research">Research</a><a href="#lino-solution">Solution</a><a href="#lino-validation">Validation</a>
+    </nav>
+    <section class="case-define" id="lino-define">
+      <div class="case-define__rail"><h2>Define</h2></div>
+      <div class="case-define__body">
+        <div class="case-row">
+          <h3>Problem<br />statement</h3>
+          <div><p>Pablo already existed, but the pharmacy website was not doing enough to guide patients toward it. The assistant was mostly being advertised by word of mouth.</p><p>Patients had to discover Pablo, understand what he could do, and feel confident choosing him over calling, driving through, or walking in.</p></div>
+        </div>
+        <div class="case-row">
+          <h3>Possible<br />solutions</h3>
+          <div><p>The design opportunity was to make a helpful service feel familiar and easy to act on:</p><ul><li>Connect Pablo to real tasks like refills and medication status.</li><li>Make the text and call paths visible at the moment of need.</li><li>Use simpler language and stronger guidance for older or less confident users.</li></ul></div>
+        </div>
+      </div>
+    </section>
     <div style="min-height:340px;background:var(--color-text);color:var(--color-bg);display:flex;align-items:flex-end;padding:clamp(32px,5vw,72px);border-bottom:2px solid var(--color-text)">
       <p style="margin:0;max-width:23ch;font-size:clamp(34px,6vw,86px);font-weight:900;line-height:.94;text-transform:uppercase;letter-spacing:-.03em">Make the helpful thing easier to find.</p>
     </div>
@@ -500,7 +563,7 @@
         <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">I created sketches, wireframes, and final designs that made Pablo easier to find, easier to understand, and easier to use for familiar pharmacy tasks.</p>
       </div>
     </section>
-    <section style="border-bottom:2px solid var(--color-text)">
+    <section id="lino-current" style="border-bottom:2px solid var(--color-text)">
       <div style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px) 32px">
         <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">The current experience</p>
         <h2 style="margin:0;max-width:22ch;font-size:clamp(26px,4vw,54px);font-weight:900;line-height:.98;text-transform:uppercase;letter-spacing:-.02em">The path existed, but it was not obvious.</h2>
@@ -512,7 +575,7 @@
         <figure style="margin:0;padding:20px;border-bottom:2px solid var(--color-text)"><img src="uploads/lino-05-app-path.webp" alt="Existing medication status and refill app path" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">An existing app path needed more context about when to text or call Pablo.</figcaption></figure>
       </div>
     </section>
-    <section style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
+    <section id="lino-research" style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
       <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Research</p>
       <h2 style="margin:0;max-width:22ch;font-size:clamp(26px,4vw,54px);font-weight:900;line-height:.98;text-transform:uppercase;letter-spacing:-.02em">Convenience matters, but familiarity and trust matter too.</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;marginTop:34px">
@@ -534,7 +597,7 @@
       </div>
       <figure style="margin:0;padding:20px;border-top:2px solid var(--color-text)"><img src="uploads/lino-07-wireframes.webp" alt="Lino's Pharmacy Pablo wireframes" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">Wireframes connect Pablo to refills, medication status, and questions the pharmacy already receives.</figcaption></figure>
     </section>
-    <section style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
+    <section id="lino-solution" style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
       <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Final solution</p>
       <h2 style="margin:0;max-width:22ch;font-size:clamp(26px,4vw,54px);font-weight:900;line-height:.98;text-transform:uppercase;letter-spacing:-.02em">A clearer invitation to get help.</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;marginTop:34px">
@@ -548,7 +611,7 @@
       <img src="uploads/lino-08-final.webp" alt="Lino's Pharmacy final Pablo experience" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" />
       <figcaption style="margin:12px 0 0;font-size:12px;line-height:1.4;color:var(--color-neutral-600)">The final direction makes Pablo visible, understandable, and actionable from the pharmacy website.</figcaption>
     </figure>
-    <section style="background:var(--color-accent);color:var(--color-bg);padding:clamp(44px,6vw,104px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
+    <section id="lino-validation" style="background:var(--color-accent);color:var(--color-bg);padding:clamp(44px,6vw,104px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
       <p style="margin:0 0 24px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-200)">Early validation</p>
       <h2 style="margin:0;max-width:22ch;font-size:clamp(28px,4vw,56px);font-weight:900;line-height:.98;text-transform:uppercase">The helpful path was easier to find.</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:44px;marginTop:44px">
@@ -586,7 +649,7 @@
   </sc-if>
 
   <sc-if value="{{ isCrm }}" hint-placeholder-val="{{ false }}">
-  <article data-page>
+  <article data-page class="case-page">
     <div style="padding:22px clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
       <button type="button" onClick="{{ goHome }}" style="background:none;border:none;padding:0;font-family:Archivo,system-ui,sans-serif;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-700);cursor:pointer" style-hover="color:var(--color-text)">&larr; All work</button>
     </div>
@@ -603,6 +666,22 @@
       <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Type</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Exploration / Discovery</p></div>
       <div style="padding:28px"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Platform</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Salesforce CRM</p></div>
     </div>
+    <nav class="case-index" aria-label="Workforce CRM case study sections">
+      <a href="#crm-define">Define</a><a href="#crm-discovery">Discovery</a><a href="#crm-solution">Solution</a><a href="#crm-validation">Validation</a><a href="#crm-future">Reflection</a>
+    </nav>
+    <section class="case-define" id="crm-define">
+      <div class="case-define__rail"><h2>Define</h2></div>
+      <div class="case-define__body">
+        <div class="case-row">
+          <h3>Problem<br />statement</h3>
+          <div><p>Salesforce supported complex internal workflows, but day-to-day requests still required context switching between records, tools, and support resources.</p><p>Employees needed a faster way to locate information and get support without leaving the workflow.</p></div>
+        </div>
+        <div class="case-row">
+          <h3>Possible<br />solutions</h3>
+          <div><p>The exploration focused on making AI useful, efficient, and easy to trust:</p><ul><li>Keep the assistant inside the Salesforce environment.</li><li>Prioritize the two highest-friction journeys instead of redesigning everything.</li><li>Use guided conversation and structured content to help people act with confidence.</li></ul></div>
+        </div>
+      </div>
+    </section>
     <div style="min-height:340px;background:var(--color-text);color:var(--color-bg);display:flex;align-items:flex-end;padding:clamp(32px,5vw,72px);border-bottom:2px solid var(--color-text)">
       <p style="margin:0;max-width:23ch;font-size:clamp(34px,6vw,86px);font-weight:900;line-height:.94;text-transform:uppercase;letter-spacing:-.03em">Make the workflow feel lighter.</p>
     </div>
@@ -622,7 +701,7 @@
         <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">From there I mapped and designed two guided chatbot flows, established the conversation cadence, and collaborated with content design to make each step clear.</p>
       </div>
     </section>
-    <section style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
+    <section id="crm-discovery" style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
       <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Discovery</p>
       <h2 style="margin:0;max-width:22ch;font-size:clamp(26px,4vw,54px);font-weight:900;line-height:.98;text-transform:uppercase;letter-spacing:-.02em">People did not need another place to work. They needed help inside the place they already used.</h2>
       <p style="margin:18px 0 0;max-width:62ch;font-size:16px;line-height:1.55">Joint FigJam workshops with associates, stakeholders, and managers surfaced where things felt confusing, inefficient, or frustrating. Five user interviews then helped identify the moments where support mattered most.</p>
@@ -640,7 +719,7 @@
       </div>
       <figure style="margin:0;padding:20px;border-top:2px solid var(--color-text)"><img src="uploads/crm-02-flows.png" alt="Anonymized Salesforce CRM priority chatbot flows" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" /><figcaption style="margin:10px 0 0;font-size:13px;line-height:1.4">Flow maps make the two priority journeys visible and give the assistant a clear job to do.</figcaption></figure>
     </section>
-    <section style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
+    <section id="crm-solution" style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
       <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-700)">Solution</p>
       <h2 style="margin:0;max-width:22ch;font-size:clamp(26px,4vw,54px);font-weight:900;line-height:.98;text-transform:uppercase;letter-spacing:-.02em">Guided chatbot flows inside the existing environment.</h2>
       <p style="margin:18px 0 0;max-width:62ch;font-size:16px;line-height:1.55">The solution optimized two sticky flows instead of asking people to learn a completely new tool. Conversation cadence, content, and step-by-step guidance worked together to help employees locate information and take action with less friction.</p>
@@ -650,7 +729,7 @@
         <div style="padding:24px;border:2px solid var(--color-text)"><h3 style="margin:0 0 10px;font-size:19px;font-weight:900;text-transform:uppercase">Make support accessible</h3><p style="margin:0;font-size:15px;line-height:1.5">Common answers become easier to reach when the support queue is busy.</p></div>
       </div>
     </section>
-    <section style="background:var(--color-accent);color:var(--color-bg);padding:clamp(44px,6vw,104px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
+    <section id="crm-validation" style="background:var(--color-accent);color:var(--color-bg);padding:clamp(44px,6vw,104px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
       <p style="margin:0 0 24px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-200)">Validation</p>
       <h2 style="margin:0;max-width:22ch;font-size:clamp(28px,4vw,56px);font-weight:900;line-height:.98;text-transform:uppercase">The guided flows felt clear and confident to most testers.</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:44px;marginTop:44px">
@@ -664,7 +743,7 @@
       <img src="uploads/crm-03-validation.png" alt="Anonymized Salesforce CRM chatbot validation screens" loading="lazy" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" />
       <figcaption style="margin:12px 0 0;font-size:12px;line-height:1.4;color:var(--color-neutral-600)">Prototype validation centered on whether people could complete both flows without needing extra support.</figcaption>
     </figure>
-    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-bottom:2px solid var(--color-text)">
+    <section id="crm-future" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-bottom:2px solid var(--color-text)">
       <div style="padding:clamp(40px,5vw,80px);border-right:2px solid var(--color-text)">
         <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">For the future</h2>
         <ul style="margin:0;padding-left:20px;font-size:16px;line-height:1.65">
