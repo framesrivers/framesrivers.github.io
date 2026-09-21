@@ -16,19 +16,6 @@
 <style>
   body { margin: 0; background: var(--color-bg); color: var(--color-text); font-family: "Archivo", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   * { box-sizing: border-box; }
-  .portfolio-shell { position: relative; width: 100%; max-width: none; overflow: visible; border-left: 2px solid var(--color-text); border-right: 2px solid var(--color-text); }
-  .portfolio-shell::before,
-  .portfolio-shell::after {
-    content: none;
-  }
-  .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; min-height: calc(100svh - 88px); }
-  .hero-copy { min-width: 0; padding: clamp(48px,6vw,96px) clamp(28px,4vw,72px) !important; gap: clamp(28px,3vw,46px) !important; }
-  .hero-copy > div:first-child { min-width: 0; }
-  .hero-name { display: block; max-width: 100%; font-size: clamp(52px,5.6vw,92px) !important; letter-spacing: -.055em !important; white-space: normal; overflow-wrap: break-word; text-wrap: balance; }
-  .hero-grid > div:nth-child(2) { min-height: calc(100svh - 88px); }
-  .hero-grid > div:nth-child(2) > div:first-child { min-height: clamp(520px,calc(100svh - 178px),760px) !important; }
-  .hero-proof { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-  .hero-proof span { border: 1px solid var(--color-neutral-300); padding: 7px 9px; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--color-neutral-700); }
   a { color: var(--color-accent-700); text-decoration: none; }
   a:hover { color: var(--color-text); }
   :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
@@ -52,35 +39,13 @@
     [data-sway] { animation: none; }
     [data-zoom] > *, #work article h3 { transition: none; }
   }
-  @media (max-width: 900px) {
-    .hero-copy { padding-inline: clamp(24px,4vw,52px) !important; }
-  }
-  @media (max-width: 760px) {
-    .portfolio-shell { border-left: 0; border-right: 0; }
-    .hero-grid { grid-template-columns: 1fr !important; min-height: auto; }
-    .hero-copy { border-right: 0 !important; padding: 52px 24px 56px !important; gap: 32px !important; }
-    .hero-name { font-size: clamp(58px,16vw,108px) !important; line-height: .86 !important; }
-    .hero-grid > div:nth-child(2) { min-height: auto; }
-    .hero-grid > div:nth-child(2) > div:first-child { min-height: min(118vw,520px) !important; }
-    .hero-grid > div:nth-child(2) img { min-height: min(118vw,520px) !important; }
-    .hero-copy [style*="grid-template-columns:1fr auto"] { grid-template-columns: 1fr !important; }
-    .hero-copy [style*="grid-template-columns:1fr auto"] p:last-child { padding-left: 0 !important; padding-top: 0 !important; }
-    #work article { border-right: 0 !important; border-bottom: 2px solid var(--color-text); }
-    #work article:last-child { border-bottom: 0; }
-    #about > div:first-child { border-right: 0 !important; min-height: 54vw !important; }
-    #about > div:nth-child(2) { padding: 52px 24px !important; }
-    #about > div:nth-child(2) > div > div { border-right: 0 !important; border-bottom: 2px solid var(--color-text); }
-    #about > div:nth-child(2) > div > div:last-child { border-bottom: 0; }
-    header { padding-inline: 20px !important; }
-    header nav { width: 100%; justify-content: flex-start; }
-  }
 </style>
 </helmet>
 
-<div class="portfolio-shell" style="width:100%;min-height:100vh;background:var(--color-bg)">
+<div style="width:100%;min-height:100vh;background:var(--color-bg)">
 
   <header style="display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;justify-content:space-between;padding:26px clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
-    <a href="#top" onClick="{{ goHome }}" style="font-weight:900;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-text)">Marcos Uriel</a>
+    <a href="#top" onClick="{{ goHome }}" style="font-weight:900;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-text)">Marcos Rios</a>
     <nav style="display:flex;flex-wrap:wrap;gap:clamp(12px,2vw,28px);align-items:baseline">
       <a href="#work" style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text)">Work</a>
       <a href="#about" style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text)">About</a>
@@ -94,13 +59,17 @@
   <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
   <div id="top">
 
-    <section class="hero-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));border-bottom:2px solid var(--color-text)">
-      <div class="hero-copy" style="padding:clamp(40px,5vw,88px);display:flex;flex-direction:column;gap:clamp(30px,3.2vw,48px);border-right:2px solid var(--color-text)">
+    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));border-bottom:2px solid var(--color-text)">
+      <div style="padding:clamp(40px,5vw,88px);display:flex;flex-direction:column;gap:clamp(30px,3.2vw,48px);border-right:2px solid var(--color-text)">
         <div data-reveal style="animation-delay:.05s">
-          <h1 class="hero-name" style="margin:clamp(44px,4vw,64px) 0 0;font-size:clamp(52px,9vw,124px);line-height:.86;font-weight:900;letter-spacing:-.03em;text-transform:uppercase">Marcos<br />Uriel</h1>
+          <p style="margin:0 0 20px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-700)">UX/UI Designer &middot; Roma, Texas</p>
+          <h1 style="margin:0;font-size:clamp(52px,9vw,124px);line-height:.86;font-weight:900;letter-spacing:-.03em;text-transform:uppercase">Marcos<br />Rios</h1>
         </div>
         <p data-reveal style="animation-delay:.18s;margin:0;max-width:34ch;font-size:clamp(17px,1.5vw,21px);line-height:1.45;text-wrap:pretty">I design software for people who live between two languages. Research, interface, and the small details that decide whether someone finishes the task or gives up.</p>
-        <div class="hero-proof" data-reveal style="animation-delay:.24s"><span>Research-led</span><span>ES / EN</span><span>Built for real life</span></div>
+        <div data-reveal style="animation-delay:.3s;display:grid;grid-template-columns:1fr auto;gap:0;border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
+          <p style="margin:0;padding:12px 0;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">Open to full-time &amp; contract</p>
+          <p style="margin:0;padding:12px 0 12px 16px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-700)">Sep 2026</p>
+        </div>
         <div data-reveal style="animation-delay:.42s;display:flex;flex-wrap:wrap;gap:12px">
           <a href="#work" style="background:var(--color-accent);color:var(--color-bg);padding:14px 20px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase" style-hover="background:var(--color-accent-600)">See the work</a>
           <a href="#contact" style="border:2px solid var(--color-text);color:var(--color-text);padding:12px 20px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase" style-hover="background:var(--color-accent-200)">R&eacute;sum&eacute;</a>
@@ -108,7 +77,7 @@
       </div>
       <div style="display:flex;flex-direction:column">
         <div data-reveal style="animation-delay:.12s;flex:1;min-height:420px;border-bottom:2px solid var(--color-text);overflow:hidden;background:var(--color-surface)">
-          <img src="uploads/marcos-uriel-hero.png" alt="Marcos Uriel" style="display:block;width:100%;height:100%;min-height:420px;object-fit:cover;object-position:50% 50%;filter:grayscale(1) contrast(1.05)" />
+          <img src="uploads/Marcos Rios.jpg" alt="Marcos Rios" style="display:block;width:100%;height:100%;min-height:420px;object-fit:cover;object-position:50% 22%;filter:grayscale(1) contrast(1.05)" />
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr">
           <div style="padding:28px;border-right:2px solid var(--color-text)">
@@ -123,6 +92,10 @@
       </div>
     </section>
 
+    <sc-if value="{{ papel }}" hint-placeholder-val="{{ true }}">
+      <div data-sway style="height:28px;background:var(--color-accent);maskImage:radial-gradient(circle at 14px 28px, transparent 11px, #000 11.5px);WebkitMaskImage:radial-gradient(circle at 14px 28px, transparent 11px, #000 11.5px);maskSize:28px 28px;WebkitMaskSize:28px 28px;maskRepeat:repeat-x;WebkitMaskRepeat:repeat-x"></div>
+    </sc-if>
+
     <section id="frontera" data-reveal style="background:var(--color-accent);color:var(--color-bg);padding:clamp(56px,8vw,128px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
       <p style="margin:0 0 24px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-200)">Dise&ntilde;ar en la frontera / Designing on the border</p>
       <h2 style="margin:0;max-width:26ch;font-size:clamp(32px,5.5vw,72px);line-height:1;font-weight:900;letter-spacing:-.02em;text-transform:uppercase">Most software assumes one language, one device, one kind of user.</h2>
@@ -134,16 +107,16 @@
         <h2 style="margin:0;font-size:clamp(28px,4vw,52px);font-weight:900;letter-spacing:-.02em;text-transform:uppercase">Selected work</h2>
         <p style="margin:0;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Three case studies</p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-top:2px solid var(--color-text)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));borderTop:2px solid var(--color-text)">
 
         <article style="border-right:2px solid var(--color-text);display:flex;flex-direction:column">
           <div data-zoom style="aspect-ratio:4/3;position:relative;overflow:hidden;border-bottom:2px solid var(--color-text);background:var(--color-surface);filter:grayscale(1) contrast(1.05)">
-            <img src="uploads/noahs-ark-source/selected-hero-mockup.jpg" alt="Noah's Ark mobile product mockup" style="display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;filter:none" />
+            <image-slot id="work-noah" shape="rect" fit="cover" placeholder="Drop a Noah's Ark screen or shelter photo"></image-slot>
           </div>
           <div style="padding:32px;display:flex;flex-direction:column;gap:18px;flex:1">
             <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-accent-700)">01 &middot; Animal rescue</p>
             <h3 style="margin:0;font-size:26px;font-weight:900;letter-spacing:-.01em;text-transform:uppercase">Noah's Ark</h3>
-            <p style="margin:0;font-size:15px;line-height:1.5;flex:1;text-wrap:pretty">A lost-pet recovery app redesigned around urgency, clearer reporting, and emotional support when people need to act quickly.</p>
+            <p style="margin:0;font-size:15px;line-height:1.5;flex:1;text-wrap:pretty">An adoption and foster platform for a volunteer-run shelter. Rebuilt intake so one person can log an animal from a parking lot on their phone.</p>
             <button type="button" onClick="{{ openNoah }}" style="align-self:flex-start;background:var(--color-accent);color:var(--color-bg);border:none;padding:12px 18px;font-family:Archivo,system-ui,sans-serif;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;cursor:pointer" style-hover="background:var(--color-accent-600)">Read case study</button>
           </div>
         </article>
@@ -176,15 +149,15 @@
     </section>
 
     <section id="about" data-reveal data-rule style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-bottom:2px solid var(--color-text)">
-      <div style="border-right:2px solid var(--color-text);min-height:460px;position:relative;background:var(--color-surface);overflow:hidden">
-        <img src="uploads/roma-map.png" alt="Map showing Roma, Texas and surrounding border communities" style="display:block;width:100%;height:100%;min-height:460px;object-fit:cover;object-position:center" />
+      <div style="border-right:2px solid var(--color-text);min-height:460px;position:relative;background:var(--color-surface);filter:grayscale(1) contrast(1.05)">
+        <image-slot id="about-roma" shape="rect" fit="cover" placeholder="Drop a photo of Roma — the plaza, the bluff, the brick"></image-slot>
       </div>
       <div style="padding:clamp(40px,5vw,88px);display:flex;flex-direction:column;gap:28px">
         <p style="margin:0;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-700)">About</p>
         <h2 style="margin:0;font-size:clamp(28px,4vw,48px);line-height:1.02;font-weight:900;letter-spacing:-.02em;text-transform:uppercase">A designer from a town of 11,000 on the river</h2>
         <p style="margin:0;font-size:17px;line-height:1.55;text-wrap:pretty">Roma sits on a bluff over the R&iacute;o Grande, brick buildings from the 1850s still standing on the plaza. I spent my childhood translating &mdash; forms, appointment calls, warranty cards &mdash; for people who were perfectly capable and just weren't being spoken to in their own language.</p>
         <p style="margin:0;font-size:17px;line-height:1.55;text-wrap:pretty">That is the job I do now, with better tools. I run the research, sketch the flows, build the interface in Figma, and sit with real users until the thing works without me in the room. I care most about clarity under pressure: a pharmacy line, a shelter intake, a rep with forty minutes before a call.</p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:0;border:2px solid var(--color-text);margin-top:8px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:0;border:2px solid var(--color-text);marginTop:8px">
           <div style="padding:24px;border-right:2px solid var(--color-text)">
             <p data-count style="margin:0;font-size:28px;font-weight:900">5 yrs</p>
             <p style="margin:4px 0 0;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-neutral-600)">Designing</p>
@@ -206,7 +179,7 @@
         <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-700)">Process</p>
         <h2 style="margin:0;font-size:clamp(28px,4vw,52px);font-weight:900;letter-spacing:-.02em;text-transform:uppercase">How I work</h2>
       </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));border-top:2px solid var(--color-text)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));borderTop:2px solid var(--color-text)">
         <div style="padding:40px 32px;border-right:2px solid var(--color-text)">
           <p style="margin:0 0 14px;font-size:42px;font-weight:900;color:var(--color-accent);line-height:1">01</p>
           <h3 style="margin:0 0 10px;font-size:19px;font-weight:800;text-transform:uppercase;letter-spacing:.02em">Listen first</h3>
@@ -258,26 +231,30 @@
         <h2 style="margin:0;font-size:clamp(26px,3.4vw,44px);font-weight:900;letter-spacing:-.02em;text-transform:uppercase">Side projects &amp; photography</h2>
         <p style="margin:0;max-width:44ch;font-size:15px;line-height:1.5;color:var(--color-neutral-800)">Weekends I shoot the plaza, the river, and the old customs house. The same habit as research: look until you notice something.</p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));border-top:2px solid var(--color-text)">
-        <div style="aspect-ratio:4/3;border-right:2px solid var(--color-text);background:var(--color-surface);position:relative;overflow:hidden;filter:grayscale(1) contrast(1.05)">
-          <img src="uploads/roma-photo-01.png" alt="Portrait in a glittering dress" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center" />
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));borderTop:2px solid var(--color-text)">
+        <div style="aspect-ratio:1/1;border-right:2px solid var(--color-text);background:var(--color-surface);position:relative;filter:grayscale(1) contrast(1.05)">
+          <image-slot id="photo-plaza" shape="rect" fit="cover" placeholder="Drop: the plaza"></image-slot>
         </div>
-        <div style="aspect-ratio:4/3;border-right:2px solid var(--color-text);background:var(--color-surface);position:relative;overflow:hidden;filter:grayscale(1) contrast(1.05)">
-          <img src="uploads/roma-photo-02.png" alt="Portrait with a small dog" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center" />
+        <div style="aspect-ratio:1/1;border-right:2px solid var(--color-text);background:var(--color-surface);position:relative;filter:grayscale(1) contrast(1.05)">
+          <image-slot id="photo-rio" shape="rect" fit="cover" placeholder="Drop: the río grande"></image-slot>
         </div>
-        <div style="aspect-ratio:4/3;border-right:2px solid var(--color-text);background:var(--color-surface);position:relative;overflow:hidden;filter:grayscale(1) contrast(1.05)">
-          <img src="uploads/roma-photo-03.png" alt="Family portrait" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center" />
+        <div style="aspect-ratio:1/1;border-right:2px solid var(--color-text);background:var(--color-surface);position:relative;filter:grayscale(1) contrast(1.05)">
+          <image-slot id="photo-customs" shape="rect" fit="cover" placeholder="Drop: the customs house"></image-slot>
         </div>
-        <div style="aspect-ratio:4/3;background:var(--color-surface);position:relative;overflow:hidden;filter:grayscale(1) contrast(1.05)">
-          <img src="uploads/roma-photo-04.png" alt="Portrait in a director's chair" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center" />
+        <div style="aspect-ratio:1/1;background:var(--color-surface);position:relative;filter:grayscale(1) contrast(1.05)">
+          <image-slot id="photo-type" shape="rect" fit="cover" placeholder="Drop: a type study"></image-slot>
         </div>
       </div>
     </section>
 
+    <sc-if value="{{ papel }}" hint-placeholder-val="{{ true }}">
+      <div data-sway style="height:28px;background:var(--color-accent);maskImage:radial-gradient(circle at 14px 0, transparent 11px, #000 11.5px);WebkitMaskImage:radial-gradient(circle at 14px 0, transparent 11px, #000 11.5px);maskSize:28px 28px;WebkitMaskSize:28px 28px;maskRepeat:repeat-x;WebkitMaskRepeat:repeat-x"></div>
+    </sc-if>
+
     <section id="contact" data-reveal style="background:var(--color-text);color:var(--color-bg);padding:clamp(56px,8vw,128px) clamp(20px,5vw,80px)">
       <p style="margin:0 0 20px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-400)">Contact</p>
       <h2 style="margin:0;max-width:24ch;font-size:clamp(32px,6vw,76px);line-height:.98;font-weight:900;letter-spacing:-.02em;text-transform:uppercase">Let's talk about the work</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;margin-top:40px;border:2px solid var(--color-neutral-600)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;marginTop:40px;border:2px solid var(--color-neutral-600)">
         <div style="padding:30px;border-right:2px solid var(--color-neutral-600)">
           <p style="margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-400)">Email</p>
           <a href="mailto:hola@marcosrios.design" style="font-size:18px;font-weight:800;color:var(--color-bg)" style-hover="color:var(--color-accent-400)">hola@marcosrios.design</a>
@@ -290,7 +267,7 @@
           <a href="#" style="background:var(--color-accent);color:var(--color-bg);padding:14px 20px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase" style-hover="background:var(--color-accent-500)">Download r&eacute;sum&eacute; (PDF)</a>
         </div>
       </div>
-      <p style="margin:32px 0 0;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-500)">Marcos Uriel &middot; Roma, Texas</p>
+      <p style="margin:32px 0 0;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-500)">Marcos Rios &middot; Roma, Texas &middot; Available for full-time &amp; contract</p>
     </section>
 
   </div>
@@ -302,127 +279,59 @@
       <button type="button" onClick="{{ goHome }}" style="background:none;border:none;padding:0;font-family:Archivo,system-ui,sans-serif;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-700);cursor:pointer" style-hover="color:var(--color-text)">&larr; All work</button>
     </div>
     <header style="padding:clamp(40px,5vw,88px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
-      <p style="margin:0 0 16px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-700)">01 &middot; Lost-pet recovery app</p>
-      <h1 style="margin:0;max-width:14ch;font-size:clamp(40px,7vw,96px);line-height:.92;font-weight:900;letter-spacing:-.03em;text-transform:uppercase">Noah's Ark</h1>
-      <p style="margin:24px 0 0;max-width:64ch;font-size:clamp(17px,1.6vw,21px);line-height:1.45;text-wrap:pretty">Redesigning a lost-pet recovery app for urgency, clarity, and emotional support. Noah's Ark combines reporting tools, pet profiles, and a community feed, but critical actions had become hard to find when people needed them most.</p>
+      <p style="margin:0 0 16px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-700)">01 &middot; Animal rescue platform</p>
+      <h1 style="margin:0;font-size:clamp(40px,7vw,96px);line-height:.92;font-weight:900;letter-spacing:-.03em;text-transform:uppercase">Noah's Ark</h1>
+      <p style="margin:24px 0 0;max-width:56ch;font-size:clamp(17px,1.6vw,21px);line-height:1.45;text-wrap:pretty">A volunteer-run shelter was logging intakes on paper and losing animals in the handoff to fosters. I redesigned intake and adoption around one constraint: a phone, outdoors, one hand free.</p>
     </header>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border-bottom:2px solid var(--color-text)">
-      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Role</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Freelance Product Designer</p></div>
-      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Timeline</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">6 weeks</p></div>
-      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Team</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Founder, developers, copy designer</p></div>
-      <div style="padding:28px"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Platform</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Mobile app</p></div>
+      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Role</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Lead UX/UI</p></div>
+      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Timeline</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">10 weeks</p></div>
+      <div style="padding:28px;border-right:2px solid var(--color-text)"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Team</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">2 devs, 1 PM, me</p></div>
+      <div style="padding:28px"><p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Tools</p><p style="margin:6px 0 0;font-size:16px;font-weight:800">Figma, Maze</p></div>
     </div>
-    <div style="padding:clamp(24px,5vw,72px);background:#f0eeeb;border-bottom:2px solid var(--color-text)">
-      <img src="uploads/noahs-ark-source/selected-hero-mockup.jpg" alt="Noah's Ark mobile product mockup" style="display:block;width:100%;height:auto;max-width:1180px;margin:0 auto;border:2px solid var(--color-text)" />
+    <div style="min-height:340px;background:var(--color-text);color:var(--color-bg);display:flex;align-items:flex-end;padding:clamp(32px,5vw,72px);border-bottom:2px solid var(--color-text)">
+      <p style="margin:0;max-width:22ch;font-size:clamp(34px,6vw,86px);font-weight:900;line-height:.94;text-transform:uppercase;letter-spacing:-.03em">Photo first.<br />Details after.</p>
     </div>
     <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-bottom:2px solid var(--color-text)">
       <div style="padding:clamp(40px,5vw,80px);border-right:2px solid var(--color-text)">
         <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">The problem</h2>
-        <p style="margin:0 0 14px;font-size:16px;line-height:1.55;text-wrap:pretty">Noah's Ark had grown into a busy product with reporting, pet profiles, a community feed, donations, and a store. The problem was not a lack of features. It was that urgent actions were competing with everything else.</p>
-        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">For someone looking for a missing pet, a social feed and a crisis flow created cognitive dissonance. Reporting was also longer than it needed to be, and the tone felt harsh at the exact moment users needed reassurance.</p>
+        <p style="margin:0 0 14px;font-size:16px;line-height:1.55;text-wrap:pretty">Intake happened wherever an animal was found. Volunteers filled a paper sheet, photographed it later, and typed it into a spreadsheet at night &mdash; if they remembered. Fosters got a text with no history. Adopters emailed about animals already placed.</p>
+        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">I shadowed six volunteers over two weekends and counted eleven places the same animal's information was re-entered.</p>
       </div>
       <div style="padding:clamp(40px,5vw,80px)">
-        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">My role</h2>
-        <p style="margin:0 0 14px;font-size:16px;line-height:1.55;text-wrap:pretty">I audited the existing product, interviewed pet owners, mapped the core flows, created design principles, built sketches, wireframes, and prototypes, and tested the redesign with users.</p>
-        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">The work focused on three core flows: report a missing pet, report a found pet, and create or manage a pet profile. I collaborated with the founder, developers, and copy designer throughout.</p>
-      </div>
-    </section>
-    <section style="display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,320px);gap:clamp(28px,6vw,96px);align-items:center;padding:clamp(40px,6vw,88px) clamp(20px,5vw,80px);background:#f0eeeb;border-bottom:2px solid var(--color-text)">
-      <div>
-        <p style="margin:0 0 14px;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-700)">The current experience</p>
-        <h2 style="margin:0 0 16px;max-width:18ch;font-size:clamp(28px,4vw,54px);line-height:.98;font-weight:900;text-transform:uppercase;letter-spacing:-.02em">The product asked people to think like social users during a crisis.</h2>
-        <p style="margin:0;max-width:52ch;font-size:16px;line-height:1.55;text-wrap:pretty">The audit showed the conflict clearly: a social feed, profile management, memorial features, and monetization were all sharing the same space as the actions people needed most. These screens are the evidence behind the product-priority problem.</p>
-      </div>
-      <figure style="margin:0">
-        <img src="uploads/noahs-ark-source/selected-current-screens.jpg" alt="Current Noah's Ark social feed and pet profile screens" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" />
-        <figcaption style="margin-top:10px;font-size:11px;line-height:1.4;color:var(--color-neutral-600)">Selected screens from the audit: social patterns and profile actions competing with recovery tasks.</figcaption>
-      </figure>
-    </section>
-    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-bottom:2px solid var(--color-text)">
-      <div style="padding:clamp(40px,5vw,80px);border-right:2px solid var(--color-text)">
-        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">Research</h2>
-        <p style="margin:0 0 14px;font-size:16px;line-height:1.55;text-wrap:pretty">I interviewed five participants recruited from Facebook pet communities: two had previously lost a pet, one currently had a missing pet, one had experienced an unresolved loss, and one was a general pet owner. I also reviewed real lost-pet posts.</p>
-        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">The clearest pattern was simple: stress amplifies every interaction. People need reassurance, and real recovery behavior is speedy, functional, and community-first.</p>
-      </div>
-      <div style="padding:clamp(40px,5vw,80px)">
-        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">Design principles</h2>
-        <p style="margin:0 0 12px;font-size:16px;line-height:1.55;text-wrap:pretty"><strong>Put urgent actions first.</strong> Make the next right action obvious.</p>
-        <p style="margin:0 0 12px;font-size:16px;line-height:1.55;text-wrap:pretty"><strong>Minimize effort during anxiety.</strong> Remove unnecessary decisions and repetition.</p>
-        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty"><strong>Design with empathy, not just efficiency.</strong> The interface should help people feel supported.</p>
+        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">What I did</h2>
+        <p style="margin:0 0 14px;font-size:16px;line-height:1.55;text-wrap:pretty">Rebuilt intake as a four-step form that saves on every field and works offline, with photo-first entry &mdash; the picture is the record, the details fill in after.</p>
+        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">Gave fosters a single animal page with medical history, and made the public adoption list read from the same record so nothing stale ever shows.</p>
       </div>
     </section>
     <section style="border-bottom:2px solid var(--color-text)">
       <div style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px) 32px">
-        <h2 style="margin:0;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">Exploration and interaction design</h2>
+        <h2 style="margin:0;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">Process</h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));border-top:2px solid var(--color-text)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));borderTop:2px solid var(--color-text)">
         <div style="border-right:2px solid var(--color-text);padding:32px">
           <p style="margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-accent-700)">Step 01</p>
-          <h3 style="margin:0 0 10px;font-size:18px;font-weight:800;text-transform:uppercase">Sketches</h3>
-          <p style="margin:0;font-size:15px;line-height:1.5">Explored a home experience organized around critical actions, with secondary features moved out of the critical path.</p>
+          <h3 style="margin:0 0 10px;font-size:18px;font-weight:800;text-transform:uppercase">Service blueprint</h3>
+          <p style="margin:0;font-size:15px;line-height:1.5">Mapped every handoff from found animal to adoption. The gaps were all at shift changes.</p>
         </div>
         <div style="border-right:2px solid var(--color-text);padding:32px">
           <p style="margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-accent-700)">Step 02</p>
-          <h3 style="margin:0 0 10px;font-size:18px;font-weight:800;text-transform:uppercase">Wireframes</h3>
-          <p style="margin:0;font-size:15px;line-height:1.5">Added a step indicator, separated required and optional fields, gave location more importance, and introduced a review step before submission.</p>
+          <h3 style="margin:0 0 10px;font-size:18px;font-weight:800;text-transform:uppercase">Paper wireframes</h3>
+          <p style="margin:0;font-size:15px;line-height:1.5">Tested three intake orders on paper before a pixel existed. Photo-first won every time.</p>
         </div>
         <div style="padding:32px">
           <p style="margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--color-accent-700)">Step 03</p>
-          <h3 style="margin:0 0 10px;font-size:18px;font-weight:800;text-transform:uppercase">Prototype testing</h3>
-          <p style="margin:0;font-size:15px;line-height:1.5">Tested missing-pet and found-pet reporting with five participants, then refined the flow, language, and confirmations around what people actually needed.</p>
+          <h3 style="margin:0 0 10px;font-size:18px;font-weight:800;text-transform:uppercase">Usability, round 2</h3>
+          <p style="margin:0;font-size:15px;line-height:1.5">Eight volunteers, gloves on, one hand busy. Hit targets went up to 48px after that session.</p>
         </div>
-      </div>
-    </section>
-    <section style="padding:clamp(28px,5vw,72px) clamp(20px,5vw,80px);background:#f0eeeb;border-bottom:2px solid var(--color-text)">
-      <figure style="margin:0;max-width:980px;margin-inline:auto">
-        <img src="uploads/noahs-ark-source/selected-sketches-wireframes.jpg" alt="Noah's Ark early sketches and interaction ideas" style="display:block;width:100%;height:auto;border:2px solid var(--color-text)" />
-        <figcaption style="margin-top:10px;font-size:11px;line-height:1.4;color:var(--color-neutral-600)">Early sketches helped move the product from a feature-heavy platform toward a clear recovery-first flow.</figcaption>
-      </figure>
-    </section>
-    <section style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
-      <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">The redesign</h2>
-      <p style="margin:0;max-width:70ch;font-size:17px;line-height:1.6;text-wrap:pretty">The final direction used a shorter guided reporting flow, clearer progress and required/optional labels, a map-centered lost-and-found search, scannable pet cards, and a simpler My Pets dashboard. Monetization and membership moved away from the critical path. The tone became supportive instead of clinical or alarming.</p>
-    </section>
-    <section style="padding:clamp(28px,5vw,72px) clamp(20px,5vw,80px);background:#f0eeeb;border-bottom:2px solid var(--color-text)">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1180px;margin:0 auto">
-        <figure style="margin:0;background:var(--color-bg);border:2px solid var(--color-text);padding:14px">
-          <img src="uploads/noahs-ark-source/selected-reporting-flow.jpg" alt="Four-step guided lost-pet reporting flow" style="display:block;width:100%;height:auto" />
-          <figcaption style="margin-top:10px;font-size:11px;line-height:1.4;color:var(--color-neutral-600)">A guided four-step report makes progress visible and keeps the next action clear.</figcaption>
-        </figure>
-        <figure style="margin:0;background:var(--color-bg);border:2px solid var(--color-text);padding:14px">
-          <img src="uploads/noahs-ark-source/selected-search-dashboard.jpg" alt="Map-centered lost-pet search" style="display:block;width:100%;height:auto" />
-          <figcaption style="margin-top:10px;font-size:11px;line-height:1.4;color:var(--color-neutral-600)">The search experience uses maps, nearby pets, and scannable details instead of a social-feed pattern.</figcaption>
-        </figure>
       </div>
     </section>
     <section style="background:var(--color-accent);color:var(--color-bg);padding:clamp(44px,6vw,104px) clamp(20px,5vw,80px);border-bottom:2px solid var(--color-text)">
       <p style="margin:0 0 24px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-200)">Outcome</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:44px">
-        <div><p data-count style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">60% &rarr; 100%</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Task completion for the tested reporting flows.</p></div>
-        <div><p data-count style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">4:20 &rarr; 2:30</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Average task completion time.</p></div>
-        <div><p data-count style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">4.1 &rarr; 6.3/7</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Confidence rating after completing the tasks.</p></div>
-      </div>
-    </section>
-    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0;border-bottom:2px solid var(--color-text)">
-      <div style="padding:clamp(40px,5vw,80px);border-right:2px solid var(--color-text)">
-        <p style="margin:0 0 14px;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-700)">Validation</p>
-        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">The redesign made urgent work easier to start and finish.</h2>
-        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">I ran moderated usability sessions comparing the original experience with the redesign. Participants completed missing-pet and found-pet reporting tasks, asked fewer clarification questions, and described the new flow as easier and more comforting.</p>
-      </div>
-      <div style="padding:clamp(40px,5vw,80px);background:#f0eeeb">
-        <p style="margin:0 0 14px;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-700)">What changed</p>
-        <p style="margin:0 0 12px;font-size:16px;line-height:1.55;text-wrap:pretty"><strong>Before:</strong> urgent actions competed with donation, store, community, and membership features.</p>
-        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty"><strong>After:</strong> reporting became shorter, more guided, and more supportive, with search and pet management organized around recovery.</p>
-      </div>
-    </section>
-    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-bottom:2px solid var(--color-text)">
-      <div style="padding:clamp(40px,5vw,80px);border-right:2px solid var(--color-text)">
-        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">What I learned</h2>
-        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">The hardest part was not cleaning up the interface. It was rethinking the product around stress, urgency, and support. When the user is worried, every extra question feels bigger.</p>
-      </div>
-      <div style="padding:clamp(40px,5vw,80px)">
-        <h2 style="margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em">Next opportunities</h2>
-        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">Future work could explore auto-generated flyers, neighborhood notifications, trust signals, expanded testing, and real-world recovery outcomes while considering scams, shelter partnerships, monetization, and crisis ethics.</p>
+        <div><p data-count style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">4 min</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Average intake, down from 20 minutes of paper plus retyping.</p></div>
+        <div><p data-count style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">0</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Duplicate records in the first three months after launch.</p></div>
+        <div><p data-count style="margin:0;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1">+38%</p><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:var(--color-accent-100)">Adoption inquiries, once listings stopped going stale.</p></div>
       </div>
     </section>
     <section style="padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between">
@@ -554,7 +463,7 @@
 </div>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script>
+<script type="text/x-dc" data-dc-script data-props="{&quot;papelPicado&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Roma motifs&quot;}}">
 class Component extends DCLogic {
   state = { view: "home" };
   go(view) {
@@ -630,6 +539,7 @@ class Component extends DCLogic {
       isNoah: v === "noah",
       isLino: v === "lino",
       isCrm: v === "crm",
+      papel: this.props.papelPicado ?? true,
       goHome: () => this.go("home"),
       openNoah: () => this.go("noah"),
       openLino: () => this.go("lino"),
