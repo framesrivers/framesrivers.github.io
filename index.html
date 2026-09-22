@@ -6,6 +6,27 @@
     <title>Prototype</title>
     <script type="module" crossorigin src="/assets/index-BD7yUOCW.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-BeXgG6-f.css">
+    <style>
+      #root .work-section,
+      #root .frontera,
+      #root .about-section,
+      #root .process-section,
+      #root .skills-section,
+      #root .contact-section {
+        margin-block: clamp(28px, 3vw, 48px);
+      }
+
+      @media (max-width: 520px) {
+        #root .work-section,
+        #root .frontera,
+        #root .about-section,
+        #root .process-section,
+        #root .skills-section,
+        #root .contact-section {
+          margin-block: 24px;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
